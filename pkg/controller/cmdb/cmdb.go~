@@ -2,7 +2,9 @@ package cmdb
 
 import (
 	"context"
-
+	"github.com/darianJmy/fortis-services/pkg/db"
+	"github.com/darianJmy/fortis-services/pkg/db/model"
+	"github.com/darianJmy/fortis-services/pkg/types"
 )
 
 type CmdbGetter interface {
@@ -12,6 +14,7 @@ type CmdbGetter interface {
 type Interface interface {
 	CreateModel(ctx context.Context, m *types.ModelDes) (*types.ModelDes, error)
 	GetModel(ctx context.Context, mId string) (*types.ModelDes, error)
+	GetResource(ctx context.Context) ([]types.Resource, error)
 }
 
 type cmdb struct {
@@ -41,6 +44,14 @@ func (c *cmdb) GetModel(ctx context.Context, mId string) (*types.ModelDes, error
 	return &types.ModelDes{
 		ObjectId:   des.ObjectId,
 		ObjectName: des.ObjectName,
+	}, nil
+}
+
+func (c *cmdb) GetResource(ctx context.Context) ([]types.Resource, error) {
+
+	return []types.Resource{
+		{Name: "test", Number: 1},
+		{Name: "test2", Number: 2},
 	}, nil
 }
 

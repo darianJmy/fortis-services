@@ -1,27 +1,33 @@
 package cmdb
 
 import (
+	"github.com/darianJmy/fortis-services/pkg/controller"
 	"github.com/gin-gonic/gin"
 
 	"github.com/darianJmy/fortis-services/cmd/app/options"
 )
 
 type cmdbRouter struct {
+	control controller.FortisInterface
 }
 
 func NewRouter(o *options.ServerRunOptions) {
-	router := &cmdbRouter{}
+	router := &cmdbRouter{
+		controller: o.Control,
+	}
 
 	router.cmdbRoutes(o.HttpEngine)
 }
 
-func (ir *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
-	infoRoute := httpEngine.Group("/cmdb")
+func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
+	cmRoute := httpEngine.Group("/cmdb")
 	{
-		infoRoute.POST("", cm.createCMDB)
-		infoRoute.PUT("/:cmdbId", cm.updateCMDB)
-		infoRoute.DELETE("/:cmdbId", cm.deleteCMDB)
-		infoRoute.GET("/:cmdbId", cm.getCMDB)
-		infoRoute.GET("", cm.listCMDBs)
+		cmRoute.POST("", cm.createCMDB)
+		cmRoute.PUT("/:cmdbId", cm.updateCMDB)
+		cmRoute.DELETE("/:cmdbId", cm.deleteCMDB)
+		cmRoute.GET("/:cmdbId", cm.getCMDB)
+		cmRoute.GET("", cm.listCMDBs)
+		cmRoute.GET("/resource/count", cm.resourceCount)
+
 	}
 }

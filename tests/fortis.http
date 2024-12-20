@@ -13,12 +13,5 @@
 @menuId=1
 
 
-### 创建用户
-POST http://{{host}}:{{port}}/users
-Content-Type: application/json
-
-{
-  "name": {{userName}},
-  "password": {{userPassword}},
-  "description": "超级管理员"
-}
+### 查询资源
+GET http://{{host}}:{{port}}/cmdb/resource/count

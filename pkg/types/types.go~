@@ -43,6 +43,6 @@ type ModelDes struct {
 }
 
 type Resource struct {
-	Name   string `json:"name"`
-	Number int64  `json:"number"`
+	Name string `json:"name"`
+	Number int64 `json:"number"`
 }

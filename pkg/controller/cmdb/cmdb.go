@@ -14,6 +14,7 @@ type CmdbGetter interface {
 type Interface interface {
 	CreateModel(ctx context.Context, m *types.ModelDes) (*types.ModelDes, error)
 	GetModel(ctx context.Context, mId string) (*types.ModelDes, error)
+	GetResource(ctx context.Context) ([]types.Resource, error)
 }
 
 type cmdb struct {
@@ -43,6 +44,14 @@ func (c *cmdb) GetModel(ctx context.Context, mId string) (*types.ModelDes, error
 	return &types.ModelDes{
 		ObjectId:   des.ObjectId,
 		ObjectName: des.ObjectName,
+	}, nil
+}
+
+func (c *cmdb) GetResource(ctx context.Context) ([]types.Resource, error) {
+
+	return []types.Resource{
+		{Name: "test", Number: 1},
+		{Name: "test2", Number: 0},
 	}, nil
 }
 
