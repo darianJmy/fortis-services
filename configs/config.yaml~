@@ -1,0 +1,11 @@
+default:
+  mode: debug
+  listen: 8888
+  autoMigrate: true
+
+mongo:
+  host: 122.152.212.112
+  user: mongo_hDZc3Q
+  password: mongo_bnxZea
+  port: 27019
+  name: sample

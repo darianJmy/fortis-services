@@ -1,0 +1,13 @@
+@host=127.0.0.1
+@port=8888
+@userId=1
+@userName="jimmy"
+@userPassword="123456"
+@userCurrentPassword="654321"
+
+@roleName="admin"
+@roleId=1
+
+@menuURL="/info"
+@menuName="信息"
+@menuId=1
