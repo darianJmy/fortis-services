@@ -26,7 +26,7 @@ type ObjectDes struct {
 	ClassificationId string             `bson:"classification_id"`
 }
 
-func (o *ObjectDes) TableName() string { return "objDes" }
+func (o *ObjectDes) TableName() string { return "ObjDes" }
 
 type ObjectAttDes struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty"`
@@ -40,4 +40,4 @@ type ObjectAttDes struct {
 	IsRequired   bool               `bson:"is_required"`
 }
 
-func (o *ObjectAttDes) TableName() string { return "objAttDes" }
+func (o *ObjectAttDes) TableName() string { return "ObjAttDes" }

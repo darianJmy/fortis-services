@@ -5,6 +5,7 @@ import (
 	"github.com/darianJmy/fortis-services/pkg/db"
 	"github.com/darianJmy/fortis-services/pkg/db/model"
 	"github.com/darianJmy/fortis-services/pkg/types"
+	"time"
 )
 
 type CmdbGetter interface {
@@ -15,6 +16,9 @@ type Interface interface {
 	CreateModel(ctx context.Context, m *types.ModelDes) (*types.ModelDes, error)
 	GetModel(ctx context.Context, mId string) (*types.ModelDes, error)
 	GetResource(ctx context.Context) ([]types.Resource, error)
+	CreateObjClassification(ctx context.Context, obj *types.ObjClassification) error
+	CreateObject(ctx context.Context, obj *types.ObjectDes) error
+	CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) error
 }
 
 type cmdb struct {
@@ -47,8 +51,54 @@ func (c *cmdb) GetModel(ctx context.Context, mId string) (*types.ModelDes, error
 	}, nil
 }
 
-func (c *cmdb) GetResource(ctx context.Context) ([]types.Resource, error) {
+func (c *cmdb) CreateObjClassification(ctx context.Context, obj *types.ObjClassification) error {
+	objClassification := &model.ObjClassification{
+		CreatedAt:          time.Now(),
+		UpdatedAt:          time.Now(),
+		ClassificationId:   obj.ClassificationId,
+		ClassificationName: obj.ClassificationName,
+	}
 
+	if err := c.factory.Cmdb.CreateObjClassification(ctx, *objClassification); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *cmdb) CreateObject(ctx context.Context, obj *types.ObjectDes) error {
+	objectDes := &model.ObjectDes{
+		CreatedAt:        time.Now(),
+		UpdatedAt:        time.Now(),
+		ObjectId:         obj.ObjectId,
+		ObjectName:       obj.ObjectName,
+		ClassificationId: obj.ClassificationId,
+	}
+
+	if err := c.factory.Cmdb.CreateObjDes(ctx, *objectDes); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *cmdb) CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) error {
+	objectAttr := &model.ObjectAttDes{
+		CreatedAt:    time.Now(),
+		UpdatedAt:    time.Now(),
+		ObjectId:     obj.ObjectId,
+		PropertyId:   obj.PropertyId,
+		PropertyType: obj.PropertyType,
+	}
+
+	if err := c.factory.Cmdb.CreateObjAttr(ctx, *objectAttr); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *cmdb) GetResource(ctx context.Context) ([]types.Resource, error) {
 	return []types.Resource{
 		{Name: "test", Number: 1},
 		{Name: "test2", Number: 0},

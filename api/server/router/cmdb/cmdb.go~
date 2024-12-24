@@ -13,7 +13,7 @@ type cmdbRouter struct {
 
 func NewRouter(o *options.ServerRunOptions) {
 	router := &cmdbRouter{
-		controller: o.Control,
+		control: o.Control,
 	}
 
 	router.cmdbRoutes(o.HttpEngine)
@@ -28,6 +28,8 @@ func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
 		cmRoute.GET("/:cmdbId", cm.getCMDB)
 		cmRoute.GET("", cm.listCMDBs)
 		cmRoute.GET("/resource/count", cm.resourceCount)
-
+		cmRoute.POST("/create/objClassification", cm.createObjClassification)
+		cmRoute.POST("/create/object", cm.createObject)
+		cmRoute.POST("/create/objectAttr", cm.createObject)
 	}
 }

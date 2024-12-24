@@ -34,13 +34,3 @@ Content-Type: application/json
   "object_name": "111",
   "classification_id": "TEST"
 }
-
-### 创建属性
-POST http://{{host}}:{{port}}/cmdb/create/objectAttr
-Content-Type: application/json
-
-{
-  "object_id": "obj",
-  "object_name": "111",
-  "classification_id": "TEST"
-}

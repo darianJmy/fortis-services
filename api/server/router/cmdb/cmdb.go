@@ -28,6 +28,8 @@ func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
 		cmRoute.GET("/:cmdbId", cm.getCMDB)
 		cmRoute.GET("", cm.listCMDBs)
 		cmRoute.GET("/resource/count", cm.resourceCount)
-
+		cmRoute.POST("/create/objClassification", cm.createObjClassification)
+		cmRoute.POST("/create/object", cm.createObject)
+		cmRoute.POST("/create/objectAttr", cm.createObjectAttr)
 	}
 }

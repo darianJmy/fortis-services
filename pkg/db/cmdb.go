@@ -129,6 +129,31 @@ func (c *cmdb) ListData(ctx context.Context, object interface{}) error {
 	return nil
 }
 
+func (c *cmdb) CreateObjClassification(ctx context.Context, obj model.ObjClassification) error {
+	_, err := c.db.Collection(obj.TableName()).InsertOne(ctx, obj)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *cmdb) CreateObjDes(ctx context.Context, obj model.ObjectDes) error {
+	_, err := c.db.Collection(obj.TableName()).InsertOne(ctx, obj)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *cmdb) CreateObjAttr(ctx context.Context, obj model.ObjectAttDes) error {
+	_, err := c.db.Collection(obj.TableName()).InsertOne(ctx, obj)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 type fields struct {
 	PropertyId   string `bson:"property_id"`
 	PropertyType string `bson:"property_type"`

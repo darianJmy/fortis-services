@@ -2,6 +2,7 @@ package cmdb
 
 import (
 	"context"
+	"github.com/darianJmy/fortis-services/pkg/types"
 	"github.com/gin-gonic/gin"
 
 	"github.com/darianJmy/fortis-services/api/server/httputils"
@@ -43,6 +44,70 @@ func (cm *cmdbRouter) resourceCount(c *gin.Context) {
 	resources, err := cm.control.CMDB().GetResource(context.TODO())
 	if err != nil {
 		httputils.SetFailed(c, r, err)
+	}
+
+	r.Result = resources
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) createObjClassification(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	var (
+		obj types.ObjClassification
+		err error
+	)
+
+	if err = c.ShouldBindJSON(&obj); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	if err = cm.control.CMDB().CreateObjClassification(context.TODO(), &obj); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) createObject(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	var (
+		obj types.ObjectDes
+		err error
+	)
+
+	if err = c.ShouldBindJSON(&obj); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	if err = cm.control.CMDB().CreateObject(context.TODO(), &obj); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) createObjectAttr(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	var (
+		obj types.ObjectAttr
+		err error
+	)
+
+	if err = c.ShouldBindJSON(&obj); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	if err = cm.control.CMDB().CreateObject(context.TODO(), &obj); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
 	}
 
 	httputils.SetSuccess(c, r)

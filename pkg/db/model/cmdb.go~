@@ -1,7 +1,6 @@
 package model
 
 import (
-
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -27,7 +26,7 @@ type ObjectDes struct {
 	ClassificationId string             `bson:"classification_id"`
 }
 
-func (o *ObjectDes) TableName() string { return "objDes" }
+func (o *ObjectDes) TableName() string { return "ObjDes" }
 
 type ObjectAttDes struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty"`
