@@ -105,10 +105,34 @@ func (cm *cmdbRouter) createObjectAttr(c *gin.Context) {
 		return
 	}
 
-	if err = cm.control.CMDB().CreateObject(context.TODO(), &obj); err != nil {
+	if err = cm.control.CMDB().CreateObjectAttr(context.TODO(), &obj); err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
 
 	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) createObjectData(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	var (
+		obj map[string]string
+		err error
+	)
+
+	objId := c.Param("objectId")
+
+	if err = c.ShouldBindJSON(&obj); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	if err = cm.control.CMDB().CreateObjectData(context.TODO(), objId, obj); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	httputils.SetSuccess(c, r)
+
 }

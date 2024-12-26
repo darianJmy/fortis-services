@@ -41,6 +41,7 @@ Content-Type: application/json
 
 {
   "object_id": "obj",
-  "object_name": "111",
-  "classification_id": "TEST"
+  "property_id": "111",
+  "property_name": "TEST",
+  "property_type": "bool"
 }

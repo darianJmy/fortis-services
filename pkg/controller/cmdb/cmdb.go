@@ -19,6 +19,7 @@ type Interface interface {
 	CreateObjClassification(ctx context.Context, obj *types.ObjClassification) error
 	CreateObject(ctx context.Context, obj *types.ObjectDes) error
 	CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) error
+	CreateObjectData(ctx context.Context, objId string, obj map[string]string) error
 }
 
 type cmdb struct {
@@ -88,6 +89,7 @@ func (c *cmdb) CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) erro
 		UpdatedAt:    time.Now(),
 		ObjectId:     obj.ObjectId,
 		PropertyId:   obj.PropertyId,
+		PropertyName: obj.PropertyName,
 		PropertyType: obj.PropertyType,
 	}
 
@@ -96,6 +98,10 @@ func (c *cmdb) CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) erro
 	}
 
 	return nil
+}
+
+func (c *cmdb) CreateObjectData(ctx context.Context, objId string, obj map[string]string) error {
+
 }
 
 func (c *cmdb) GetResource(ctx context.Context) ([]types.Resource, error) {

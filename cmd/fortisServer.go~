@@ -1,9 +1,8 @@
 package main
 
 import (
-	"os"
-
 	"github.com/darianJmy/fortis-services/cmd/app"
+	"os"
 )
 
 func main() {

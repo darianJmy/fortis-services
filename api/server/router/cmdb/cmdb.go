@@ -31,5 +31,6 @@ func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
 		cmRoute.POST("/create/objClassification", cm.createObjClassification)
 		cmRoute.POST("/create/object", cm.createObject)
 		cmRoute.POST("/create/objectAttr", cm.createObjectAttr)
+		cmRoute.POST("/create/instance/object/:objectId", cm.createObjectData)
 	}
 }

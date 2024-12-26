@@ -143,6 +143,7 @@ func (c *cmdb) CreateObjDes(ctx context.Context, obj model.ObjectDes) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -151,6 +152,23 @@ func (c *cmdb) CreateObjAttr(ctx context.Context, obj model.ObjectAttDes) error 
 	if err != nil {
 		return err
 	}
+
+	return nil
+}
+
+func (c *cmdb) GetObjectAttr(ctx context.Context, objId string) ([]model.ObjectAttDes, error) {
+	attr := &model.ObjectAttDes{ObjectId: objId}
+
+	cursor, err := c.db.Collection(attr.TableName()).Find(ctx, attr)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(ctx)
+
+	for cursor.Next(ctx) {
+
+	}
+
 	return nil
 }
 
