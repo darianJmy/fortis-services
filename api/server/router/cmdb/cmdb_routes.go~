@@ -2,72 +2,46 @@ package cmdb
 
 import (
 	"context"
-	"github.com/darianJmy/fortis-services/pkg/types"
+
 	"github.com/gin-gonic/gin"
 
 	"github.com/darianJmy/fortis-services/api/server/httputils"
+	"github.com/darianJmy/fortis-services/pkg/types"
 )
-
-func (cm *cmdbRouter) createCMDB(c *gin.Context) {
-	r := httputils.NewResponse()
-
-	httputils.SetSuccess(c, r)
-}
-
-func (cm *cmdbRouter) updateCMDB(c *gin.Context) {
-	r := httputils.NewResponse()
-
-	httputils.SetSuccess(c, r)
-}
-
-func (cm *cmdbRouter) deleteCMDB(c *gin.Context) {
-	r := httputils.NewResponse()
-
-	httputils.SetSuccess(c, r)
-}
-
-func (cm *cmdbRouter) getCMDB(c *gin.Context) {
-	r := httputils.NewResponse()
-
-	httputils.SetSuccess(c, r)
-}
-
-func (cm *cmdbRouter) listCMDBs(c *gin.Context) {
-	r := httputils.NewResponse()
-
-	httputils.SetSuccess(c, r)
-}
-
-func (cm *cmdbRouter) resourceCount(c *gin.Context) {
-	r := httputils.NewResponse()
-
-	resources, err := cm.control.CMDB().GetResource(context.TODO())
-	if err != nil {
-		httputils.SetFailed(c, r, err)
-	}
-
-	r.Result = resources
-	httputils.SetSuccess(c, r)
-}
 
 func (cm *cmdbRouter) createObjClassification(c *gin.Context) {
 	r := httputils.NewResponse()
 
 	var (
-		obj types.ObjClassification
-		err error
+		objCls types.ObjClassification
+		err    error
 	)
 
-	if err = c.ShouldBindJSON(&obj); err != nil {
+	if err = c.ShouldBindJSON(&objCls); err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
 
-	if err = cm.control.CMDB().CreateObjClassification(context.TODO(), &obj); err != nil {
+	result, err := cm.control.CMDB().CreateObjClassification(context.TODO(), &objCls)
+	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
 
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) listObjClassification(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	objCls, err := cm.control.CMDB().ListObjClassification(context.TODO())
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = objCls
 	httputils.SetSuccess(c, r)
 }
 
@@ -84,11 +58,36 @@ func (cm *cmdbRouter) createObject(c *gin.Context) {
 		return
 	}
 
-	if err = cm.control.CMDB().CreateObject(context.TODO(), &obj); err != nil {
+	result, err := cm.control.CMDB().CreateObject(context.TODO(), &obj)
+	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
 
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) listObject(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	var (
+		obj types.ObjectDes
+		err error
+	)
+
+	if err = c.ShouldBindJSON(&obj); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	result, err := cm.control.CMDB().ListObject(context.TODO(), obj.ClassificationId)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
 	httputils.SetSuccess(c, r)
 }
 
@@ -105,11 +104,36 @@ func (cm *cmdbRouter) createObjectAttr(c *gin.Context) {
 		return
 	}
 
-	if err = cm.control.CMDB().CreateObjectAttr(context.TODO(), &obj); err != nil {
+	result, err := cm.control.CMDB().CreateObjectAttr(context.TODO(), &obj)
+	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
 
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) listObjectAttr(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	var (
+		obj types.ObjectAttr
+		err error
+	)
+
+	if err = c.ShouldBindJSON(&obj); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	result, err := cm.control.CMDB().ListObject(context.TODO(), obj.ObjectId)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
 	httputils.SetSuccess(c, r)
 }
 
@@ -128,11 +152,27 @@ func (cm *cmdbRouter) createObjectData(c *gin.Context) {
 		return
 	}
 
-	if err = cm.control.CMDB().CreateObjectData(context.TODO(), objId, obj); err != nil {
+	result, err := cm.control.CMDB().CreateObjectData(context.TODO(), objId, obj)
+	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
 
+	r.Result = result
 	httputils.SetSuccess(c, r)
+}
 
+func (cm *cmdbRouter) listObjectData(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	objId := c.Param("objectId")
+
+	result, err := cm.control.CMDB().ListObjectData(context.TODO(), objId)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
 }

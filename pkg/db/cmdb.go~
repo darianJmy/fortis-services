@@ -188,10 +188,10 @@ func (c *cmdb) ListObjData(ctx context.Context, objId string) (interface{}, erro
 		if err = cursor.Decode(&r); err != nil {
 			return nil, err
 		}
-		objData = append(objData, r)
+		objDatas = append(objDatas, r)
 	}
 
-	return objData, err
+	return result, err
 }
 
 func newCmdb(db *mongo.Database) *cmdb {

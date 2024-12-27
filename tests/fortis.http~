@@ -12,27 +12,35 @@
 @menuName="信息"
 @menuId=1
 
-
-### 查询资源
-GET http://{{host}}:{{port}}/cmdb/resource/count
-
 ### 创建分组
 POST http://{{host}}:{{port}}/cmdb/create/objClassification
 Content-Type: application/json
 
 {
-  "classification_id": "TEST",
-  "classification_name": "TEST"
+  "classification_id": "company",
+  "classification_name": "公司"
 }
+
+### 查询分组
+POST http://{{host}}:{{port}}/cmdb/list/objClassification
+Content-Type: application/json
 
 ### 创建模型
 POST http://{{host}}:{{port}}/cmdb/create/object
 Content-Type: application/json
 
 {
-  "object_id": "obj",
-  "object_name": "111",
-  "classification_id": "TEST"
+  "object_id": "development",
+  "object_name": "开发部门",
+  "classification_id": "company"
+}
+
+### 查询分组下的模型
+POST http://{{host}}:{{port}}/cmdb/list/object
+Content-Type: application/json
+
+{
+  "classification_id": "company"
 }
 
 ### 创建属性
@@ -40,8 +48,36 @@ POST http://{{host}}:{{port}}/cmdb/create/objectAttr
 Content-Type: application/json
 
 {
-  "object_id": "obj",
-  "property_id": "111",
-  "property_name": "TEST",
-  "property_type": "bool",
+  "object_id": "business",
+  "property_id": "homeAddress",
+  "property_name": "成员家庭地址",
+  "property_type": "string"
+}
+
+### 查询模型下属性
+POST http://{{host}}:{{port}}/cmdb/list/objectAttr
+Content-Type: application/json
+
+{
+  "object_id": "business"
+}
+
+### 创建值
+POST http://{{host}}:{{port}}/cmdb/create/instance/object/business
+Content-Type: application/json
+
+{
+  "homeAddress": "苏州吴中郭巷",
+  "name": "jimmy",
+  "age": "18"
+}
+
+### 创建值
+POST http://{{host}}:{{port}}/cmdb/create/instance/object/business
+Content-Type: application/json
+
+{
+  "homeAddress": "苏州吴中郭巷",
+  "name": "jimmy",
+  "age": "18"
 }

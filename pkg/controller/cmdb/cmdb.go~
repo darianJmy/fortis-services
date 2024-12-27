@@ -2,6 +2,7 @@ package cmdb
 
 import (
 	"context"
+	"fmt"
 	"github.com/darianJmy/fortis-services/pkg/db"
 	"github.com/darianJmy/fortis-services/pkg/db/model"
 	"github.com/darianJmy/fortis-services/pkg/types"
@@ -13,61 +14,55 @@ type CmdbGetter interface {
 }
 
 type Interface interface {
-	CreateModel(ctx context.Context, m *types.ModelDes) (*types.ModelDes, error)
-	GetModel(ctx context.Context, mId string) (*types.ModelDes, error)
-	GetResource(ctx context.Context) ([]types.Resource, error)
-	CreateObjClassification(ctx context.Context, obj *types.ObjClassification) error
-	CreateObject(ctx context.Context, obj *types.ObjectDes) error
-	CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) error
-	CreateObjectData(ctx context.Context, objId string, obj map[string]string) error
+	CreateObjClassification(ctx context.Context, objCls *types.ObjClassification) (interface{}, error)
+	ListObjClassification(ctx context.Context) ([]types.ObjClassification, error)
+	CreateObject(ctx context.Context, obj *types.ObjectDes) (interface{}, error)
+	ListObject(ctx context.Context, clsId string) ([]types.ObjectDes, error)
+	CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) (interface{}, error)
+	ListObjectAttr(ctx context.Context, objId string) ([]types.ObjectAttr, error)
+	CreateObjectData(ctx context.Context, objId string, obj map[string]string) (interface{}, error)
+	ListObjectData(ctx context.Context, objId string) (interface{}, error)
 }
 
 type cmdb struct {
 	factory *db.ShareDaoFactory
 }
 
-func (c *cmdb) CreateModel(ctx context.Context, m *types.ModelDes) (*types.ModelDes, error) {
-
-	if err := c.factory.Cmdb.CreateCollection(ctx, &model.ObjectDes{ObjectId: m.ObjectId, ObjectName: m.ObjectName}); err != nil {
-		return nil, err
+func (c *cmdb) CreateObjClassification(ctx context.Context, objCls *types.ObjClassification) (interface{}, error) {
+	objClassification := &model.ObjClassification{
+		CreatedAt:          time.Now(),
+		UpdatedAt:          time.Now(),
+		ClassificationId:   objCls.ClassificationId,
+		ClassificationName: objCls.ClassificationName,
 	}
 
-	if err := c.factory.Cmdb.CreateDefaultField(ctx, m.ObjectId); err != nil {
-		return nil, err
-	}
-
-	return m, nil
-}
-
-func (c *cmdb) GetModel(ctx context.Context, mId string) (*types.ModelDes, error) {
-
-	des, err := c.factory.Cmdb.GetCollection(ctx, mId)
+	result, err := c.factory.Cmdb.CreateObjClassification(ctx, objClassification)
 	if err != nil {
 		return nil, err
 	}
 
-	return &types.ModelDes{
-		ObjectId:   des.ObjectId,
-		ObjectName: des.ObjectName,
-	}, nil
+	return result, nil
 }
 
-func (c *cmdb) CreateObjClassification(ctx context.Context, obj *types.ObjClassification) error {
-	objClassification := &model.ObjClassification{
-		CreatedAt:          time.Now(),
-		UpdatedAt:          time.Now(),
-		ClassificationId:   obj.ClassificationId,
-		ClassificationName: obj.ClassificationName,
+func (c *cmdb) ListObjClassification(ctx context.Context) ([]types.ObjClassification, error) {
+	objClasses, err := c.factory.Cmdb.ListObjClassification(ctx)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := c.factory.Cmdb.CreateObjClassification(ctx, *objClassification); err != nil {
-		return err
+	var typeObjClasses []types.ObjClassification
+	for _, v := range objClasses {
+		typeObjCls := types.ObjClassification{
+			ClassificationId:   v.ClassificationId,
+			ClassificationName: v.ClassificationName,
+		}
+		typeObjClasses = append(typeObjClasses, typeObjCls)
 	}
 
-	return nil
+	return typeObjClasses, nil
 }
 
-func (c *cmdb) CreateObject(ctx context.Context, obj *types.ObjectDes) error {
+func (c *cmdb) CreateObject(ctx context.Context, obj *types.ObjectDes) (interface{}, error) {
 	objectDes := &model.ObjectDes{
 		CreatedAt:        time.Now(),
 		UpdatedAt:        time.Now(),
@@ -76,14 +71,34 @@ func (c *cmdb) CreateObject(ctx context.Context, obj *types.ObjectDes) error {
 		ClassificationId: obj.ClassificationId,
 	}
 
-	if err := c.factory.Cmdb.CreateObjDes(ctx, *objectDes); err != nil {
-		return err
+	result, err := c.factory.Cmdb.CreateObjDes(ctx, objectDes)
+	if err != nil {
+		return nil, err
 	}
 
-	return nil
+	return result, nil
 }
 
-func (c *cmdb) CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) error {
+func (c *cmdb) ListObject(ctx context.Context, clsId string) ([]types.ObjectDes, error) {
+	objs, err := c.factory.Cmdb.ListObjDes(ctx, clsId)
+	if err != nil {
+		return nil, err
+	}
+
+	var typeObjs []types.ObjectDes
+	for _, v := range objs {
+		typeObjCls := types.ObjectDes{
+			ObjectId:         v.ObjectId,
+			ObjectName:       v.ObjectName,
+			ClassificationId: v.ClassificationId,
+		}
+		typeObjs = append(typeObjs, typeObjCls)
+	}
+
+	return typeObjs, nil
+}
+
+func (c *cmdb) CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) (interface{}, error) {
 	objectAttr := &model.ObjectAttDes{
 		CreatedAt:    time.Now(),
 		UpdatedAt:    time.Now(),
@@ -93,24 +108,62 @@ func (c *cmdb) CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) erro
 		PropertyType: obj.PropertyType,
 	}
 
-	if err := c.factory.Cmdb.CreateObjAttr(ctx, *objectAttr); err != nil {
-		return err
+	result, err := c.factory.Cmdb.CreateObjAttr(ctx, objectAttr)
+	if err != nil {
+		return nil, err
 	}
 
-	return nil
+	return result, nil
 }
 
-func (c *cmdb) CreateObjectData(ctx context.Context, objId string, obj map[string]string) error {
+func (c *cmdb) ListObjectAttr(ctx context.Context, objId string) ([]types.ObjectAttr, error) {
+	objAttrs, err := c.factory.Cmdb.ListObjAttr(ctx, objId)
+	if err != nil {
+		return nil, err
+	}
 
-	
+	var typeObjAttrs []types.ObjectAttr
+	for _, v := range objAttrs {
+		typeObjAttr := types.ObjectAttr{
+			PropertyId:   v.PropertyId,
+			PropertyName: v.PropertyName,
+			PropertyType: v.PropertyType,
+			ObjectId:     v.ObjectId,
+		}
+		typeObjAttrs = append(typeObjAttrs, typeObjAttr)
+	}
 
+	return typeObjAttrs, nil
 }
 
-func (c *cmdb) GetResource(ctx context.Context) ([]types.Resource, error) {
-	return []types.Resource{
-		{Name: "test", Number: 1},
-		{Name: "test2", Number: 0},
-	}, nil
+func (c *cmdb) CreateObjectData(ctx context.Context, objId string, obj map[string]string) (interface{}, error) {
+	attrs, err := c.factory.Cmdb.ListObjAttr(ctx, objId)
+	if err != nil {
+		return nil, err
+	}
+
+	newData := make(map[string]interface{})
+	for _, attr := range attrs {
+		if value, ok := obj[attr.PropertyId]; ok {
+			newData[attr.PropertyId] = value
+		}
+	}
+
+	result, err := c.factory.Cmdb.CreateObjData(ctx, objId, newData)
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+
+func (c *cmdb) ListObjectData(ctx context.Context, objId string) (interface{}, error) {
+	objData, err := c.factory.Cmdb.ListObjData(ctx, objId)
+	if err != nil {
+		return nil, err
+	}
+
+	return objData, nil
 }
 
 func NewCmdb(f *db.ShareDaoFactory) *cmdb {

@@ -1,10 +1,10 @@
 package cmdb
 
 import (
-	"github.com/darianJmy/fortis-services/pkg/controller"
 	"github.com/gin-gonic/gin"
 
 	"github.com/darianJmy/fortis-services/cmd/app/options"
+	"github.com/darianJmy/fortis-services/pkg/controller"
 )
 
 type cmdbRouter struct {
@@ -22,15 +22,13 @@ func NewRouter(o *options.ServerRunOptions) {
 func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
 	cmRoute := httpEngine.Group("/cmdb")
 	{
-		cmRoute.POST("", cm.createCMDB)
-		cmRoute.PUT("/:cmdbId", cm.updateCMDB)
-		cmRoute.DELETE("/:cmdbId", cm.deleteCMDB)
-		cmRoute.GET("/:cmdbId", cm.getCMDB)
-		cmRoute.GET("", cm.listCMDBs)
-		cmRoute.GET("/resource/count", cm.resourceCount)
 		cmRoute.POST("/create/objClassification", cm.createObjClassification)
+		cmRoute.POST("/list/objClassification", cm.listObjClassification)
 		cmRoute.POST("/create/object", cm.createObject)
+		cmRoute.POST("/list/object", cm.listObject)
 		cmRoute.POST("/create/objectAttr", cm.createObjectAttr)
+		cmRoute.POST("/list/objectAttr", cm.listObjectAttr)
 		cmRoute.POST("/create/instance/object/:objectId", cm.createObjectData)
+		cmRoute.POST("/list/instance/object/:objectId", cm.listObjectData)
 	}
 }
