@@ -40,4 +40,4 @@ type ObjectAttDes struct {
 	IsRequired   bool               `bson:"is_required"`
 }
 
-func (o *ObjectAttDes) TableName() string { return "objAttDes" }
+func (o *ObjectAttDes) TableName() string { return "ObjAttDes" }

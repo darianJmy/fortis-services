@@ -1,16 +1,5 @@
 @host=127.0.0.1
 @port=8888
-@userId=1
-@userName="jimmy"
-@userPassword="123456"
-@userCurrentPassword="654321"
-
-@roleName="admin"
-@roleId=1
-
-@menuURL="/info"
-@menuName="信息"
-@menuId=1
 
 ### 创建分组
 POST http://{{host}}:{{port}}/cmdb/create/objClassification
@@ -21,9 +10,17 @@ Content-Type: application/json
   "classification_name": "公司"
 }
 
-### 查询分组
+### 查询分组信息
 POST http://{{host}}:{{port}}/cmdb/list/objClassification
 Content-Type: application/json
+
+### 更新分组信息
+POST http://{{host}}:{{port}}/cmdb/update/objClassification/company
+Content-Type: application/json
+
+{
+  "classification_name": "学校"
+}
 
 ### 创建模型
 POST http://{{host}}:{{port}}/cmdb/create/object
@@ -62,7 +59,7 @@ Content-Type: application/json
   "object_id": "business"
 }
 
-### 创建值
+### 创建模型数据
 POST http://{{host}}:{{port}}/cmdb/create/instance/object/business
 Content-Type: application/json
 
@@ -72,12 +69,6 @@ Content-Type: application/json
   "age": "18"
 }
 
-### 创建值
-POST http://{{host}}:{{port}}/cmdb/create/instance/object/business
+### 查询模型数据
+POST http://{{host}}:{{port}}/cmdb/list/instance/object/business
 Content-Type: application/json
-
-{
-  "homeAddress": "苏州吴中郭巷",
-  "name": "jimmy",
-  "age": "18"
-}

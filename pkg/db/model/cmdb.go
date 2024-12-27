@@ -10,7 +10,7 @@ type ObjClassification struct {
 	ID                 primitive.ObjectID `bson:"_id,omitempty"`
 	CreatedAt          time.Time          `bson:"created_at"`
 	UpdatedAt          time.Time          `bson:"updated_at"`
-	ClassificationId   string             `bson:"classification_id"`
+	ClassificationId   string             `bson:"classification_id,omitempty"`
 	ClassificationName string             `bson:"classification_name"`
 }
 

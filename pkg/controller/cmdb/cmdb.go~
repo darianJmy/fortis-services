@@ -2,7 +2,6 @@ package cmdb
 
 import (
 	"context"
-	"fmt"
 	"github.com/darianJmy/fortis-services/pkg/db"
 	"github.com/darianJmy/fortis-services/pkg/db/model"
 	"github.com/darianJmy/fortis-services/pkg/types"
@@ -16,6 +15,8 @@ type CmdbGetter interface {
 type Interface interface {
 	CreateObjClassification(ctx context.Context, objCls *types.ObjClassification) (interface{}, error)
 	ListObjClassification(ctx context.Context) ([]types.ObjClassification, error)
+	UpdateObjClassification(ctx context.Context, clsId string, objCls *types.ObjClassification) (interface{}, error)
+	DeleteObjClassification(ctx context.Context, clsId string) (interface{}, error)
 	CreateObject(ctx context.Context, obj *types.ObjectDes) (interface{}, error)
 	ListObject(ctx context.Context, clsId string) ([]types.ObjectDes, error)
 	CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) (interface{}, error)
@@ -60,6 +61,34 @@ func (c *cmdb) ListObjClassification(ctx context.Context) ([]types.ObjClassifica
 	}
 
 	return typeObjClasses, nil
+}
+
+func (c *cmdb) UpdateObjClassification(ctx context.Context, clsId string, objCls *types.ObjClassification) (interface{}, error) {
+	exists, err := c.factory.Cmdb.CheckObjClassificationExists(ctx, clsId)
+	if err != nil {
+		return nil, err
+	}
+
+	if exists {
+		return c.factory.Cmdb.UpdateObjClassification(ctx, clsId, &model.ObjClassification{
+			ClassificationName: objCls.ClassificationName,
+		})
+	}
+
+	return nil, nil
+}
+
+func (c *cmdb) DeleteObjClassification(ctx context.Context, clsId string) (interface{}, error) {
+	exists, err := c.factory.Cmdb.CheckObjClassificationExists(ctx, clsId)
+	if err != nil {
+		return nil, err
+	}
+
+	if exists {
+		return nil, nil
+	}
+
+	return c.factory.Cmdb.DeleteObjClassification(ctx, clsId)
 }
 
 func (c *cmdb) CreateObject(ctx context.Context, obj *types.ObjectDes) (interface{}, error) {

@@ -46,7 +46,9 @@ func (c *cmdb) ListObjClassification(ctx context.Context) ([]model.ObjClassifica
 }
 
 func (c *cmdb) UpdateObjClassification(ctx context.Context, clsId string, objCls *model.ObjClassification) (interface{}, error) {
-	result, err := c.db.Collection(objCls.TableName()).UpdateOne(ctx, bson.M{"classification_id": clsId}, objCls)
+	result, err := c.db.Collection(objCls.TableName()).UpdateOne(ctx,
+		bson.M{"classification_id": clsId},
+		bson.M{"$set": objCls})
 	if err != nil {
 		return nil, err
 	}
@@ -63,6 +65,17 @@ func (c *cmdb) DeleteObjClassification(ctx context.Context, clsId string) (inter
 	}
 
 	return result.DeletedCount, nil
+}
+
+func (c *cmdb) CheckObjClassificationExists(ctx context.Context, clsId string) (bool, error) {
+	var objCls model.ObjClassification
+
+	_, err := c.db.Collection(objCls.TableName()).Find(ctx, bson.M{"classification_id": clsId})
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
 }
 
 func (c *cmdb) CreateObjDes(ctx context.Context, obj *model.ObjectDes) (interface{}, error) {
@@ -114,6 +127,17 @@ func (c *cmdb) DeleteObjDes(ctx context.Context, objId string) (interface{}, err
 	}
 
 	return result.DeletedCount, nil
+}
+
+func (c *cmdb) CheckObjDesExists(ctx context.Context, objId string) (bool, error) {
+	var obj model.ObjectDes
+
+	_, err := c.db.Collection(obj.TableName()).Find(ctx, bson.M{"object_id": objId})
+	if err != nil {
+		return false, err
+	}
+
+	return true,nil
 }
 
 func (c *cmdb) CreateObjAttr(ctx context.Context, obj *model.ObjectAttDes) (interface{}, error) {
@@ -188,10 +212,10 @@ func (c *cmdb) ListObjData(ctx context.Context, objId string) (interface{}, erro
 		if err = cursor.Decode(&r); err != nil {
 			return nil, err
 		}
-		objDatas = append(objDatas, r)
+		objData = append(objData, r)
 	}
 
-	return result, err
+	return objData, err
 }
 
 func newCmdb(db *mongo.Database) *cmdb {

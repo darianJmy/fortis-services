@@ -45,6 +45,46 @@ func (cm *cmdbRouter) listObjClassification(c *gin.Context) {
 	httputils.SetSuccess(c, r)
 }
 
+func (cm *cmdbRouter) updateObjClassification(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	var (
+		objCls types.ObjClassification
+		err    error
+	)
+
+	p := c.Param("objCls")
+
+	if err = c.ShouldBindJSON(&objCls); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	result, err := cm.control.CMDB().UpdateObjClassification(context.TODO(), p, &objCls)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) deleteObjClassification(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	p := c.Param("objCls")
+
+	result, err := cm.control.CMDB().UpdateObjClassification(context.TODO(), p)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
 func (cm *cmdbRouter) createObject(c *gin.Context) {
 	r := httputils.NewResponse()
 
@@ -127,7 +167,7 @@ func (cm *cmdbRouter) listObjectAttr(c *gin.Context) {
 		return
 	}
 
-	result, err := cm.control.CMDB().ListObject(context.TODO(), obj.ObjectId)
+	result, err := cm.control.CMDB().ListObjectAttr(context.TODO(), obj.ObjectId)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return

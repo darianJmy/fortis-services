@@ -24,6 +24,8 @@ func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
 	{
 		cmRoute.POST("/create/objClassification", cm.createObjClassification)
 		cmRoute.POST("/list/objClassification", cm.listObjClassification)
+		cmRoute.POST("/update/objClassification/:objCls", cm.updateObjClassification)
+		cmRoute.DELETE("/delete/objClassification/:objCls", cm.deleteObjClassification)
 		cmRoute.POST("/create/object", cm.createObject)
 		cmRoute.POST("/list/object", cm.listObject)
 		cmRoute.POST("/create/objectAttr", cm.createObjectAttr)
