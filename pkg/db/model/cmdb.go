@@ -7,14 +7,15 @@ import (
 )
 
 type ObjClassification struct {
-	ID                 primitive.ObjectID `bson:"_id,omitempty"`
-	CreatedAt          time.Time          `bson:"created_at"`
-	UpdatedAt          time.Time          `bson:"updated_at"`
+	ID                 primitive.ObjectID `bson:"id,omitempty"`
+	CreatedAt          time.Time          `bson:"created_at,omitempty"`
+	UpdatedAt          time.Time          `bson:"updated_at,omitempty"`
 	ClassificationId   string             `bson:"classification_id,omitempty"`
-	ClassificationName string             `bson:"classification_name"`
+	ClassificationName string             `bson:"classification_name,omitempty"`
+	ClassificationIcon string             `bson:"classification_icon,omitempty"`
 }
 
-func (o *ObjClassification) TableName() string { return "ObjClassification" }
+func (o ObjClassification) TableName() string { return "ObjClassification" }
 
 type ObjectDes struct {
 	ID               primitive.ObjectID `bson:"_id,omitempty"`
@@ -26,7 +27,7 @@ type ObjectDes struct {
 	ClassificationId string             `bson:"classification_id"`
 }
 
-func (o *ObjectDes) TableName() string { return "ObjDes" }
+func (o ObjectDes) TableName() string { return "ObjDes" }
 
 type ObjectAttDes struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty"`
@@ -40,4 +41,4 @@ type ObjectAttDes struct {
 	IsRequired   bool               `bson:"is_required"`
 }
 
-func (o *ObjectAttDes) TableName() string { return "ObjAttDes" }
+func (o ObjectAttDes) TableName() string { return "ObjAttDes" }

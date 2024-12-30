@@ -19,6 +19,8 @@ type Interface interface {
 	DeleteObjClassification(ctx context.Context, clsId string) (interface{}, error)
 	CreateObject(ctx context.Context, obj *types.ObjectDes) (interface{}, error)
 	ListObject(ctx context.Context, clsId string) ([]types.ObjectDes, error)
+	UpdateObject(ctx context.Context, objId string, obj *types.ObjectDes) (interface{}, error)
+	DeleteObject(ctx context.Context, objId string) (interface{}, error)
 	CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) (interface{}, error)
 	ListObjectAttr(ctx context.Context, objId string) ([]types.ObjectAttr, error)
 	CreateObjectData(ctx context.Context, objId string, obj map[string]string) (interface{}, error)
@@ -37,7 +39,7 @@ func (c *cmdb) CreateObjClassification(ctx context.Context, objCls *types.ObjCla
 		ClassificationName: objCls.ClassificationName,
 	}
 
-	result, err := c.factory.Cmdb.CreateObjClassification(ctx, objClassification)
+	result, err := c.factory.Cmdb.Create(ctx, objClassification.TableName(), objClassification)
 	if err != nil {
 		return nil, err
 	}
@@ -46,31 +48,34 @@ func (c *cmdb) CreateObjClassification(ctx context.Context, objCls *types.ObjCla
 }
 
 func (c *cmdb) ListObjClassification(ctx context.Context) ([]types.ObjClassification, error) {
-	objClasses, err := c.factory.Cmdb.ListObjClassification(ctx)
+	cursor, err := c.factory.Cmdb.List(ctx, model.ObjClassification{}.TableName())
 	if err != nil {
 		return nil, err
 	}
 
-	var typeObjClasses []types.ObjClassification
-	for _, v := range objClasses {
-		typeObjCls := types.ObjClassification{
-			ClassificationId:   v.ClassificationId,
-			ClassificationName: v.ClassificationName,
+	var objClasses []types.ObjClassification
+	for cursor.Next(ctx) {
+		var objCls model.ObjClassification
+		if err = cursor.Decode(&objCls); err != nil {
+			return nil, err
 		}
-		typeObjClasses = append(typeObjClasses, typeObjCls)
+		objClasses = append(objClasses, types.ObjClassification{
+			ClassificationId:   objCls.ClassificationId,
+			ClassificationName: objCls.ClassificationName,
+		})
 	}
 
-	return typeObjClasses, nil
+	return objClasses, nil
 }
 
 func (c *cmdb) UpdateObjClassification(ctx context.Context, clsId string, objCls *types.ObjClassification) (interface{}, error) {
-	exists, err := c.factory.Cmdb.CheckObjClassificationExists(ctx, clsId)
+	exists, err := c.factory.Cmdb.CheckIdExists(ctx, model.ObjClassification{}.TableName(), "classification_id", clsId)
 	if err != nil {
 		return nil, err
 	}
 
 	if exists {
-		return c.factory.Cmdb.UpdateObjClassification(ctx, clsId, &model.ObjClassification{
+		return c.factory.Cmdb.Update(ctx, clsId, "classification_id", clsId, &model.ObjClassification{
 			ClassificationName: objCls.ClassificationName,
 		})
 	}
@@ -79,16 +84,16 @@ func (c *cmdb) UpdateObjClassification(ctx context.Context, clsId string, objCls
 }
 
 func (c *cmdb) DeleteObjClassification(ctx context.Context, clsId string) (interface{}, error) {
-	exists, err := c.factory.Cmdb.CheckObjDesExists(ctx, clsId)
+	exists, err := c.factory.Cmdb.CheckIdExists(ctx, model.ObjClassification{}.TableName(), "classification_id", clsId)
 	if err != nil {
 		return nil, err
 	}
 
 	if exists {
-		return nil, nil
+		return c.factory.Cmdb.Delete(ctx, model.ObjClassification{}.TableName(), "classification_id", clsId)
 	}
 
-	return c.factory.Cmdb.DeleteObjClassification(ctx, clsId)
+	return nil, nil
 }
 
 func (c *cmdb) CreateObject(ctx context.Context, obj *types.ObjectDes) (interface{}, error) {
@@ -100,7 +105,7 @@ func (c *cmdb) CreateObject(ctx context.Context, obj *types.ObjectDes) (interfac
 		ClassificationId: obj.ClassificationId,
 	}
 
-	result, err := c.factory.Cmdb.CreateObjDes(ctx, objectDes)
+	result, err := c.factory.Cmdb.Create(ctx, objectDes.TableName(), objectDes)
 	if err != nil {
 		return nil, err
 	}
@@ -109,22 +114,55 @@ func (c *cmdb) CreateObject(ctx context.Context, obj *types.ObjectDes) (interfac
 }
 
 func (c *cmdb) ListObject(ctx context.Context, clsId string) ([]types.ObjectDes, error) {
-	objs, err := c.factory.Cmdb.ListObjDes(ctx, clsId)
+	cursor, err := c.factory.Cmdb.ListWithFilter(ctx, model.ObjectDes{}.TableName(), "classification_id", clsId)
 	if err != nil {
 		return nil, err
 	}
 
-	var typeObjs []types.ObjectDes
-	for _, v := range objs {
-		typeObjCls := types.ObjectDes{
-			ObjectId:         v.ObjectId,
-			ObjectName:       v.ObjectName,
-			ClassificationId: v.ClassificationId,
+	var objects []types.ObjectDes
+	for cursor.Next(ctx) {
+		var obj model.ObjectDes
+		if err = cursor.Decode(&obj); err != nil {
+			return nil, err
 		}
-		typeObjs = append(typeObjs, typeObjCls)
+		objects = append(objects, types.ObjectDes{
+			ObjectId:   obj.ObjectId,
+			ObjectName: obj.ObjectName,
+		})
 	}
 
-	return typeObjs, nil
+	return objects, nil
+}
+
+func (c *cmdb) UpdateObject(ctx context.Context, objId string, obj *types.ObjectDes) (interface{}, error) {
+	object := &model.ObjectDes{
+		ObjectName:       obj.ObjectName,
+		ClassificationId: obj.ClassificationId,
+	}
+
+	exists, err := c.factory.Cmdb.CheckIdExists(ctx, model.ObjectDes{}.TableName(), "object_id", objId)
+	if err != nil {
+		return nil, err
+	}
+
+	if exists {
+		return c.factory.Cmdb.Update(ctx, model.ObjectDes{}.TableName(), "object_id", objId, object)
+	}
+
+	return nil, nil
+}
+
+func (c *cmdb) DeleteObject(ctx context.Context, objId string) (interface{}, error) {
+	exists, err := c.factory.Cmdb.CheckIdExists(ctx, model.ObjectDes{}.TableName(), "object_id", objId)
+	if err != nil {
+		return nil, err
+	}
+
+	if exists {
+		return c.factory.Cmdb.Delete(ctx, model.ObjectDes{}.TableName(), "object_id", objId)
+	}
+
+	return c.factory.Cmdb.DeleteObjDes(ctx, objId)
 }
 
 func (c *cmdb) CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) (interface{}, error) {
@@ -137,7 +175,7 @@ func (c *cmdb) CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) (int
 		PropertyType: obj.PropertyType,
 	}
 
-	result, err := c.factory.Cmdb.CreateObjAttr(ctx, objectAttr)
+	result, err := c.factory.Cmdb.Create(ctx, objectAttr.TableName(), objectAttr)
 	if err != nil {
 		return nil, err
 	}

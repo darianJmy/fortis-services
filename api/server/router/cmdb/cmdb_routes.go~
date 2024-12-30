@@ -12,12 +12,8 @@ import (
 func (cm *cmdbRouter) createObjClassification(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	var (
-		objCls types.ObjClassification
-		err    error
-	)
-
-	if err = c.ShouldBindJSON(&objCls); err != nil {
+	var objCls types.ObjClassification
+	if err := c.ShouldBindJSON(&objCls); err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
@@ -48,14 +44,10 @@ func (cm *cmdbRouter) listObjClassification(c *gin.Context) {
 func (cm *cmdbRouter) updateObjClassification(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	var (
-		objCls types.ObjClassification
-		err    error
-	)
+	p := c.Param("objClsId")
 
-	p := c.Param("objCls")
-
-	if err = c.ShouldBindJSON(&objCls); err != nil {
+	var objCls types.ObjClassification
+	if err := c.ShouldBindJSON(&objCls); err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
@@ -73,9 +65,9 @@ func (cm *cmdbRouter) updateObjClassification(c *gin.Context) {
 func (cm *cmdbRouter) deleteObjClassification(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	p := c.Param("objCls")
+	p := c.Param("objClsId")
 
-	result, err := cm.control.CMDB().UpdateObjClassification(context.TODO(), p)
+	result, err := cm.control.CMDB().DeleteObjClassification(context.TODO(), p)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -88,12 +80,8 @@ func (cm *cmdbRouter) deleteObjClassification(c *gin.Context) {
 func (cm *cmdbRouter) createObject(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	var (
-		obj types.ObjectDes
-		err error
-	)
-
-	if err = c.ShouldBindJSON(&obj); err != nil {
+	var obj types.ObjectDes
+	if err := c.ShouldBindJSON(&obj); err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
@@ -111,12 +99,8 @@ func (cm *cmdbRouter) createObject(c *gin.Context) {
 func (cm *cmdbRouter) listObject(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	var (
-		obj types.ObjectDes
-		err error
-	)
-
-	if err = c.ShouldBindJSON(&obj); err != nil {
+	var obj types.ObjectDes
+	if err := c.ShouldBindJSON(&obj); err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
@@ -131,20 +115,52 @@ func (cm *cmdbRouter) listObject(c *gin.Context) {
 	httputils.SetSuccess(c, r)
 }
 
-func (cm *cmdbRouter) createObjectAttr(c *gin.Context) {
+func (cm *cmdbRouter) updateObject(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	var (
-		obj types.ObjectAttr
-		err error
-	)
+	p := c.Param("objId")
 
-	if err = c.ShouldBindJSON(&obj); err != nil {
+	var obj types.ObjectDes
+	if err := c.ShouldBindJSON(&obj); err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
 
-	result, err := cm.control.CMDB().CreateObjectAttr(context.TODO(), &obj)
+	result, err := cm.control.CMDB().UpdateObject(context.TODO(), p, &obj)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) deleteObject(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	p := c.Param("objId")
+
+	result, err := cm.control.CMDB().DeleteObject(context.TODO(), p)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) createObjectAttr(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	var objAttr types.ObjectAttr
+	if err := c.ShouldBindJSON(&objAttr); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	result, err := cm.control.CMDB().CreateObjectAttr(context.TODO(), &objAttr)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -157,17 +173,49 @@ func (cm *cmdbRouter) createObjectAttr(c *gin.Context) {
 func (cm *cmdbRouter) listObjectAttr(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	var (
-		obj types.ObjectAttr
-		err error
-	)
-
-	if err = c.ShouldBindJSON(&obj); err != nil {
+	var objAttr types.ObjectAttr
+	if err := c.ShouldBindJSON(&objAttr); err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
 
-	result, err := cm.control.CMDB().ListObjectAttr(context.TODO(), obj.ObjectId)
+	result, err := cm.control.CMDB().ListObjectAttr(context.TODO(), objAttr.ObjectId)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) updateObjectAttr(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	p := c.Param("objAttrId")
+
+	var objAttr types.ObjectAttr
+	if err := c.ShouldBindJSON(&objAttr); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	result, err := cm.control.CMDB().UpdateObjectAttr(context.TODO(), p, &objAttr)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) deleteObjectAttr(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	p := c.Param("objAttrId")
+
+	result, err := cm.control.CMDB().DeleteObjectAttr(context.TODO(), p)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -180,19 +228,15 @@ func (cm *cmdbRouter) listObjectAttr(c *gin.Context) {
 func (cm *cmdbRouter) createObjectData(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	var (
-		obj map[string]string
-		err error
-	)
+	objId := c.Param("objId")
 
-	objId := c.Param("objectId")
-
-	if err = c.ShouldBindJSON(&obj); err != nil {
+	var inst map[string]string
+	if err := c.ShouldBindJSON(&inst); err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
 
-	result, err := cm.control.CMDB().CreateObjectData(context.TODO(), objId, obj)
+	result, err := cm.control.CMDB().CreateObjectData(context.TODO(), objId, inst)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -205,7 +249,7 @@ func (cm *cmdbRouter) createObjectData(c *gin.Context) {
 func (cm *cmdbRouter) listObjectData(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	objId := c.Param("objectId")
+	objId := c.Param("objId")
 
 	result, err := cm.control.CMDB().ListObjectData(context.TODO(), objId)
 	if err != nil {
@@ -216,3 +260,53 @@ func (cm *cmdbRouter) listObjectData(c *gin.Context) {
 	r.Result = result
 	httputils.SetSuccess(c, r)
 }
+
+func (cm *cmdbRouter) updateObjectData(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	objId := c.Param("objId")
+
+	var inst map[string]string
+	if err := c.ShouldBindJSON(&inst); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	result, err := cm.control.CMDB().UpdateObjectData(context.TODO(), objId, inst)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) deleteObjectData(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	objId := c.Param("objId")
+	instId := c.Param("instId")
+
+	result, err := cm.control.CMDB().DeleteObjectData(context.TODO(), objId, instId)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) createAssociationType(c *gin.Context) {}
+
+func (cm *cmdbRouter) listAssociationType(c *gin.Context) {}
+
+func (cm *cmdbRouter) deleteAssociationType(c *gin.Context) {}
+
+func (cm *cmdbRouter) createInstAssociation(c *gin.Context) {}
+
+func (cm *cmdbRouter) listInstAssociation(c *gin.Context) {}
+
+func (cm *cmdbRouter) deleteInstAssociation(c *gin.Context) {}
+
