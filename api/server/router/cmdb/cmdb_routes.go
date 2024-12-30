@@ -225,7 +225,7 @@ func (cm *cmdbRouter) deleteObjectAttr(c *gin.Context) {
 	httputils.SetSuccess(c, r)
 }
 
-func (cm *cmdbRouter) createObjectData(c *gin.Context) {
+func (cm *cmdbRouter) createInstData(c *gin.Context) {
 	r := httputils.NewResponse()
 
 	objId := c.Param("objId")
@@ -236,7 +236,7 @@ func (cm *cmdbRouter) createObjectData(c *gin.Context) {
 		return
 	}
 
-	result, err := cm.control.CMDB().CreateObjectData(context.TODO(), objId, inst)
+	result, err := cm.control.CMDB().CreateInstanceData(context.TODO(), objId, inst)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -246,12 +246,12 @@ func (cm *cmdbRouter) createObjectData(c *gin.Context) {
 	httputils.SetSuccess(c, r)
 }
 
-func (cm *cmdbRouter) listObjectData(c *gin.Context) {
+func (cm *cmdbRouter) listInstData(c *gin.Context) {
 	r := httputils.NewResponse()
 
 	objId := c.Param("objId")
 
-	result, err := cm.control.CMDB().ListObjectData(context.TODO(), objId)
+	result, err := cm.control.CMDB().ListInstanceData(context.TODO(), objId)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -261,7 +261,7 @@ func (cm *cmdbRouter) listObjectData(c *gin.Context) {
 	httputils.SetSuccess(c, r)
 }
 
-func (cm *cmdbRouter) updateObjectData(c *gin.Context) {
+func (cm *cmdbRouter) updateInstData(c *gin.Context) {
 	r := httputils.NewResponse()
 
 	objId := c.Param("objId")
@@ -272,7 +272,7 @@ func (cm *cmdbRouter) updateObjectData(c *gin.Context) {
 		return
 	}
 
-	result, err := cm.control.CMDB().UpdateObjectData(context.TODO(), objId, inst)
+	result, err := cm.control.CMDB().UpdateInstanceData(context.TODO(), objId, inst)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -282,13 +282,13 @@ func (cm *cmdbRouter) updateObjectData(c *gin.Context) {
 	httputils.SetSuccess(c, r)
 }
 
-func (cm *cmdbRouter) deleteObjectData(c *gin.Context) {
+func (cm *cmdbRouter) deleteInstData(c *gin.Context) {
 	r := httputils.NewResponse()
 
 	objId := c.Param("objId")
 	instId := c.Param("instId")
 
-	result, err := cm.control.CMDB().DeleteObjectData(context.TODO(), objId, instId)
+	result, err := cm.control.CMDB().DeleteInstanceData(context.TODO(), objId, instId)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return

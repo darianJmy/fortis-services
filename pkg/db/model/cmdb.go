@@ -6,6 +6,12 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+const (
+	ClassificationId = "classification_id"
+	ObjectId         = "object_id"
+	PropertyId       = "property_id"
+)
+
 type ObjClassification struct {
 	ID                 primitive.ObjectID `bson:"id,omitempty"`
 	CreatedAt          time.Time          `bson:"created_at,omitempty"`
@@ -19,12 +25,12 @@ func (o ObjClassification) TableName() string { return "ObjClassification" }
 
 type ObjectDes struct {
 	ID               primitive.ObjectID `bson:"_id,omitempty"`
-	CreatedAt        time.Time          `bson:"created_at"`
-	UpdatedAt        time.Time          `bson:"updated_at"`
-	ObjectId         string             `bson:"object_id"`
-	ObjectName       string             `bson:"object_name"`
-	Description      string             `bson:"description"`
-	ClassificationId string             `bson:"classification_id"`
+	CreatedAt        time.Time          `bson:"created_at,omitempty"`
+	UpdatedAt        time.Time          `bson:"updated_at,omitempty"`
+	ObjectId         string             `bson:"object_id,omitempty"`
+	ObjectName       string             `bson:"object_name,omitempty"`
+	Description      string             `bson:"description,omitempty"`
+	ClassificationId string             `bson:"classification_id,omitempty"`
 }
 
 func (o ObjectDes) TableName() string { return "ObjDes" }

@@ -40,7 +40,7 @@ func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
 		cmRoute.POST("/create/object/instance/:objId", cm.createInstData)
 		cmRoute.POST("/list/object/instance/:objId", cm.listInstData)
 		cmRoute.PUT("/update/object/instance/:objId", cm.updateInstData)
-		cmRoute.DELETE("/delete/object/instance/:objId/:instId", cm.deleteInstData)
+		cmRoute.DELETE("/delete/object/instance/:objId/:instId", cm.createInstData)
 
 		cmRoute.POST("/create/associationType", cm.createAssociationType)
 		cmRoute.POST("/list/associationType", cm.listAssociationType)
