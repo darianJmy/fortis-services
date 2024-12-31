@@ -201,7 +201,7 @@ func (cm *cmdbRouter) updateObjectAttr(c *gin.Context) {
 		return
 	}
 
-	result, err := cm.control.CMDB().UpdateObjectAttr(context.TODO(), p1, p2, &objAttr)
+	result, err := cm.control.CMDB().UpdateObjectAttr(context.TODO(), p1,p2, &objAttr)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return

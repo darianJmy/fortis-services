@@ -1,0 +1,10 @@
+{
+  "code": 200,
+  "result": [
+    {
+      "classification_id": "company",
+      "classification_name": "公司"
+    }
+  ],
+  "message": "success"
+}

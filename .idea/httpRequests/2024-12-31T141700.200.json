@@ -1,0 +1,4 @@
+{
+  "code": 400,
+  "message": "the classification contains a model and cannot be deleted"
+}

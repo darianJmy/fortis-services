@@ -11,7 +11,7 @@ const (
 	ObjectId         = "object_id"
 	PropertyId       = "property_id"
 	InstId           = "inst_id"
-	InstName         = "实例名称"
+	InstName         = "inst_name"
 )
 
 type ObjClassification struct {

@@ -1,0 +1,16 @@
+{
+  "code": 200,
+  "result": [
+    {
+      "object_id": "administration",
+      "object_name": "行政部门",
+      "classification_id": "company"
+    },
+    {
+      "object_id": "business",
+      "object_name": "业务部门",
+      "classification_id": "company"
+    }
+  ],
+  "message": "success"
+}

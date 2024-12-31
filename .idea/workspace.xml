@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="37a0de76-84cb-4614-9b3a-bddee1a103b7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/api/server/router/cmdb/cmdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/server/router/cmdb/cmdb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/server/router/cmdb/cmdb_routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/server/router/cmdb/cmdb_routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/controller/cmdb/cmdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/cmdb/cmdb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/db/cmdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/db/cmdb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/db/model/cmdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/db/model/cmdb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/fortis.http" beforeDir="false" afterPath="$PROJECT_DIR$/tests/fortis.http" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://D:/golang/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2qPorzCzT5CL7QCBqUTPIBWSOyX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build github.com/darianJmy/fortis-services/cmd.executor": "Run",
+    "HTTP Request.fortis | 创建值.executor": "Run",
+    "HTTP Request.fortis | 创建分组.executor": "Run",
+    "HTTP Request.fortis | 创建属性.executor": "Run",
+    "HTTP Request.fortis | 创建模型.executor": "Run",
+    "HTTP Request.fortis | 删除分组.executor": "Run",
+    "HTTP Request.fortis | 更新分组信息.executor": "Run",
+    "HTTP Request.fortis | 更新模型.executor": "Run",
+    "HTTP Request.fortis | 查询分组#2.executor": "Run",
+    "HTTP Request.fortis | 查询分组.executor": "Run",
+    "HTTP Request.fortis | 查询分组下的模型.executor": "Run",
+    "HTTP Request.fortis | 查询分组信息.executor": "Run",
+    "HTTP Request.fortis | 查询模型下属性.executor": "Run",
+    "HTTP Request.fortis | 查询模型数据.executor": "Run",
+    "HTTP Request.fortis | 查询资源.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "E:/Work/sample-project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "go.autoimport"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Work\fortis-services\pkg\controller" />
+      <recent name="E:\Work\fortis-services\pkg" />
+      <recent name="E:\Work\fortis-services\api\server" />
+      <recent name="E:\Work\fortis-services\api\server\router" />
+    </key>
+  </component>
+  <component name="RunManager" selected="HTTP Request.fortis | 查询模型下属性">
+    <configuration name="fortis | 更新模型" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="7" requestIdentifier="更新模型" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 查询模型下属性" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="9" requestIdentifier="查询模型下属性" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 查询分组信息" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="2" requestIdentifier="查询分组信息" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 创建属性" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="8" requestIdentifier="创建属性" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 查询资源" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" requestIdentifier="查询资源" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 创建分组" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="2" requestIdentifier="创建分组" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 创建分组" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" requestIdentifier="创建分组" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 更新分组信息" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="3" requestIdentifier="更新分组信息" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 删除分组" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="4" requestIdentifier="删除分组" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 创建模型" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="5" requestIdentifier="创建模型" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 创建模型" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="3" requestIdentifier="创建模型" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 创建属性" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="4" requestIdentifier="创建属性" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 查询分组下的模型" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="6" requestIdentifier="查询分组下的模型" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.fortis | 查询模型下属性" />
+        <item itemvalue="HTTP Request.fortis | 创建属性" />
+        <item itemvalue="HTTP Request.fortis | 更新模型" />
+        <item itemvalue="HTTP Request.fortis | 查询分组下的模型" />
+        <item itemvalue="HTTP Request.fortis | 查询分组信息" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-33c477a475b1-e0158606a674-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-241.19072.18" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-GO-241.19072.18" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

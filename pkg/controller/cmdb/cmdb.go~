@@ -347,7 +347,7 @@ func (c *cmdb) ListInstanceData(ctx context.Context, objId string) (interface{},
 		if err = cursor.Decode(&v); err != nil {
 			return nil, err
 		}
-		objData = append(objData, v)
+		objData = append(objData, v) v
 	}
 
 	return objData, nil

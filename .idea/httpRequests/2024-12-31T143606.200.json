@@ -1,0 +1,14 @@
+{
+  "code": 200,
+  "result": [
+    {
+      "classification_id": "company",
+      "classification_name": "公司"
+    },
+    {
+      "classification_id": "school",
+      "classification_name": "学校"
+    }
+  ],
+  "message": "success"
+}

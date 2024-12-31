@@ -84,7 +84,7 @@ func (c *cmdb) DeleteWithFilter(ctx context.Context, tableName string, condition
 	return result.DeletedCount, nil
 }
 
-func (c *cmdb) DeleteInstDataField(ctx context.Context, tableName, key, value string, obj interface{}) (interface{}, error) {
+func (c *cmdb) DeleteInstData(ctx context.Context, tableName, key, value string, obj interface{}) (interface{}, error) {
 	result, err := c.db.Collection(tableName).UpdateOne(ctx, bson.M{key: value}, bson.M{"$unset": obj})
 	if err != nil {
 		return nil, err
