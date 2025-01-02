@@ -31,13 +31,13 @@ func (cm *cmdbRouter) createObjClassification(c *gin.Context) {
 func (cm *cmdbRouter) listObjClassification(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	objCls, err := cm.control.CMDB().ListObjClassification(context.TODO())
+	result, err := cm.control.CMDB().ListObjClassification(context.TODO())
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
 	}
 
-	r.Result = objCls
+	r.Result = result
 	httputils.SetSuccess(c, r)
 }
 
@@ -99,13 +99,9 @@ func (cm *cmdbRouter) createObject(c *gin.Context) {
 func (cm *cmdbRouter) listObject(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	var obj types.ObjectDes
-	if err := c.ShouldBindJSON(&obj); err != nil {
-		httputils.SetFailed(c, r, err)
-		return
-	}
+	p := c.Param("objClsId")
 
-	result, err := cm.control.CMDB().ListObject(context.TODO(), obj.ClassificationId)
+	result, err := cm.control.CMDB().ListObject(context.TODO(), p)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -173,13 +169,9 @@ func (cm *cmdbRouter) createObjectAttr(c *gin.Context) {
 func (cm *cmdbRouter) listObjectAttr(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	var objAttr types.ObjectAttr
-	if err := c.ShouldBindJSON(&objAttr); err != nil {
-		httputils.SetFailed(c, r, err)
-		return
-	}
+	p := c.Param("objId")
 
-	result, err := cm.control.CMDB().ListObjectAttr(context.TODO(), objAttr.ObjectId)
+	result, err := cm.control.CMDB().ListObjectAttr(context.TODO(), p)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -214,9 +206,10 @@ func (cm *cmdbRouter) updateObjectAttr(c *gin.Context) {
 func (cm *cmdbRouter) deleteObjectAttr(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	p := c.Param("objAttrId")
+	p1 := c.Param("objId")
+	p2 := c.Param("objAttrId")
 
-	result, err := cm.control.CMDB().DeleteObjectAttr(context.TODO(), p)
+	result, err := cm.control.CMDB().DeleteObjectAttr(context.TODO(), p1, p2)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -303,10 +296,14 @@ func (cm *cmdbRouter) createAssociationType(c *gin.Context) {}
 
 func (cm *cmdbRouter) listAssociationType(c *gin.Context) {}
 
+func (cm *cmdbRouter) updateAssociationType(c *gin.Context) {}
+
 func (cm *cmdbRouter) deleteAssociationType(c *gin.Context) {}
 
 func (cm *cmdbRouter) createInstAssociation(c *gin.Context) {}
 
 func (cm *cmdbRouter) listInstAssociation(c *gin.Context) {}
+
+func (cm *cmdbRouter) updateInstAssociation(c *gin.Context) {}
 
 func (cm *cmdbRouter) deleteInstAssociation(c *gin.Context) {}

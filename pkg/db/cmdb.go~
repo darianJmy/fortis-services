@@ -3,6 +3,8 @@ package db
 import (
 	"context"
 	"errors"
+	"fmt"
+	"github.com/darianJmy/fortis-services/pkg/db/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -20,26 +22,12 @@ func (c *cmdb) Create(ctx context.Context, tableName string, obj interface{}) (i
 	return result.InsertedID, nil
 }
 
-func (c *cmdb) List(ctx context.Context, tableName string) (*mongo.Cursor, error) {
-	cursor, err := c.db.Collection(tableName).Find(ctx, bson.M{})
-	if err != nil {
-		return nil, err
-	}
-
-	return cursor, nil
+func (c *cmdb) ListWithFilter(ctx context.Context, tableName string, condition bson.M) (*mongo.Cursor, error) {
+	return c.db.Collection(tableName).Find(ctx, condition)
 }
 
-func (c *cmdb) ListWithFilter(ctx context.Context, tableName string, key, value string) (*mongo.Cursor, error) {
-	cursor, err := c.db.Collection(tableName).Find(ctx, bson.M{key: value})
-	if err != nil {
-		return nil, err
-	}
-
-	return cursor, nil
-}
-
-func (c *cmdb) Update(ctx context.Context, tableName, key, value string, obj interface{}) (interface{}, error) {
-	result, err := c.db.Collection(tableName).UpdateOne(ctx, bson.M{key: value}, bson.M{"$set": obj})
+func (c *cmdb) UpdateWithFilter(ctx context.Context, tableName string, condition bson.M, obj interface{}) (interface{}, error) {
+	result, err := c.db.Collection(tableName).UpdateOne(ctx, condition, bson.M{"$set": obj})
 	if err != nil {
 		return nil, err
 	}
@@ -47,22 +35,8 @@ func (c *cmdb) Update(ctx context.Context, tableName, key, value string, obj int
 	return result.UpsertedID, nil
 }
 
-func (c *cmdb) UpdateWithFilter(ctx context.Context, tableName string, conditions map[string]string, obj interface{}) (interface{}, error) {
-	filter := bson.M{}
-	for k, v := range conditions {
-		filter[k] = v
-	}
-
-	result, err := c.db.Collection(tableName).UpdateOne(ctx, filter, bson.M{"$set": obj})
-	if err != nil {
-		return nil, err
-	}
-
-	return result.UpsertedID, nil
-}
-
-func (c *cmdb) Delete(ctx context.Context, tableName, key, value string) (interface{}, error) {
-	result, err := c.db.Collection(tableName).DeleteOne(ctx, bson.M{key: value})
+func (c *cmdb) DeleteWithFilter(ctx context.Context, tableName string, condition bson.M) (interface{}, error) {
+	result, err := c.db.Collection(tableName).DeleteOne(ctx, condition)
 	if err != nil {
 		return nil, err
 	}
@@ -70,31 +44,8 @@ func (c *cmdb) Delete(ctx context.Context, tableName, key, value string) (interf
 	return result.DeletedCount, nil
 }
 
-func (c *cmdb) DeleteWithFilter(ctx context.Context, tableName string, conditions map[string]string) (interface{}, error) {
-	filter := bson.M{}
-	for k, v := range conditions {
-		filter[k] = v
-	}
-
-	result, err := c.db.Collection(tableName).DeleteOne(ctx, filter)
-	if err != nil {
-		return nil, err
-	}
-
-	return result.DeletedCount, nil
-}
-
-func (c *cmdb) DeleteInstData(ctx context.Context, tableName, key, value string, obj interface{}) (interface{}, error) {
-	result, err := c.db.Collection(tableName).UpdateOne(ctx, bson.M{key: value}, bson.M{"$unset": obj})
-	if err != nil {
-		return nil, err
-	}
-
-	return result.UpsertedID, nil
-}
-
-func (c *cmdb) CheckIdExists(ctx context.Context, tableName string, key, value string) (bool, error) {
-	if err := c.db.Collection(tableName).FindOne(ctx, bson.M{key: value}).Err(); err != nil {
+func (c *cmdb) CheckIdExistsWithFilter(ctx context.Context, tableName string, condition map[string]string) (bool, error) {
+	if err := c.db.Collection(tableName).FindOne(ctx, condition).Err(); err != nil {
 		if errors.Is(err, mongo.ErrNoDocuments) {
 			return false, nil
 		}
@@ -104,20 +55,49 @@ func (c *cmdb) CheckIdExists(ctx context.Context, tableName string, key, value s
 	return true, nil
 }
 
-func (c *cmdb) CheckIdExistsWithFilter(ctx context.Context, tableName string, conditions map[string]string) (bool, error) {
-	filter := bson.M{}
-	for k, v := range conditions {
-		filter[k] = v
+func (c *cmdb) CreateObjectWithTransaction(ctx context.Context, obj, objAttDes interface{}) (interface{}, error) {
+	session, err := c.db.Client().StartSession()
+	if err != nil {
+		return nil, err
 	}
+	defer session.EndSession(ctx)
 
-	if err := c.db.Collection(tableName).FindOne(ctx, filter).Err(); err != nil {
-		if errors.Is(err, mongo.ErrNoDocuments) {
-			return false, nil
+	callback := func(ctx mongo.SessionContext) (interface{}, error) {
+		if _, err = c.db.Collection(model.ObjectDes{}.TableName()).
+			InsertOne(ctx, obj); err != nil {
+			return nil, err
 		}
-		return false, err
+
+		if _, err = c.db.Collection(model.ObjectAttDes{}.TableName()).
+			InsertOne(ctx, objAttDes); err != nil {
+			return nil, err
+		}
+		return nil, nil
 	}
 
-	return true, nil
+	return session.WithTransaction(ctx, callback)
+}
+
+func (c *cmdb) DeleteObjectAttrWithTransaction(ctx context.Context, objId, propertyId string, condition bson.M) (interface{}, error) {
+	session, err := c.db.Client().StartSession()
+	if err != nil {
+		return nil, err
+	}
+	defer session.EndSession(ctx)
+
+	callback := func(ctx mongo.SessionContext) (interface{}, error) {
+		if _, err = c.db.Collection(model.ObjectAttDes{}.TableName()).DeleteOne(ctx, condition); err != nil {
+			return nil, err
+		}
+
+		if _, err = c.db.Collection(fmt.Sprintf("Asst_%s", objId)).
+			DeleteMany(ctx, bson.M{"$unset": bson.M{propertyId: ""}}); err != nil {
+			return nil, err
+		}
+		return nil, nil
+	}
+
+	return session.WithTransaction(ctx, callback)
 }
 
 func newCmdb(db *mongo.Database) *cmdb {

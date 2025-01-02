@@ -12,6 +12,10 @@ const (
 	PropertyId       = "property_id"
 	InstId           = "inst_id"
 	InstName         = "实例名称"
+	CreatedAt        = "created_at"
+	CreatedAtName    = "创建时间"
+	UpdatedAt        = "updated_at"
+	UpdatedAtName    = "更新时间"
 )
 
 type ObjClassification struct {

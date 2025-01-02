@@ -3,7 +3,7 @@ package types
 type ObjClassification struct {
 	ClassificationId   string `json:"classification_id"`
 	ClassificationName string `json:"classification_name"`
-	ClassificationIcon string `json:"classification_icon"`
+	ClassificationIcon
 }
 
 type ObjectDes struct {

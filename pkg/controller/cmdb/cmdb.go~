@@ -8,6 +8,7 @@ import (
 	"github.com/darianJmy/fortis-services/pkg/db/model"
 	"github.com/darianJmy/fortis-services/pkg/types"
 	"go.mongodb.org/mongo-driver/bson"
+
 	"time"
 )
 
@@ -42,10 +43,13 @@ type cmdb struct {
 }
 
 func (c *cmdb) CreateObjClassification(ctx context.Context, objCls *types.ObjClassification) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
+	condition := bson.M{
+		model.ClassificationId: objCls.ClassificationId,
+	}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjClassification{}.TableName(),
-		model.ClassificationId,
-		objCls.ClassificationId); exists {
+		condition); exists {
 		return nil, errors.New("this objCls id already exists")
 	}
 
@@ -54,13 +58,14 @@ func (c *cmdb) CreateObjClassification(ctx context.Context, objCls *types.ObjCla
 		UpdatedAt:          time.Now(),
 		ClassificationId:   objCls.ClassificationId,
 		ClassificationName: objCls.ClassificationName,
+		ClassificationIcon: objCls.ClassificationIcon,
 	}
 
 	return c.factory.Cmdb.Create(ctx, objClassification.TableName(), objClassification)
 }
 
 func (c *cmdb) ListObjClassification(ctx context.Context) ([]types.ObjClassification, error) {
-	cursor, err := c.factory.Cmdb.List(ctx, model.ObjClassification{}.TableName())
+	cursor, err := c.factory.Cmdb.ListWithFilter(ctx, model.ObjClassification{}.TableName(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -74,56 +79,71 @@ func (c *cmdb) ListObjClassification(ctx context.Context) ([]types.ObjClassifica
 		objClasses = append(objClasses, types.ObjClassification{
 			ClassificationId:   v.ClassificationId,
 			ClassificationName: v.ClassificationName,
+			ClassificationIcon: v.ClassificationIcon,
 		})
+	}
+
+	if err = cursor.Close(ctx); err != nil {
+		return nil, err
 	}
 
 	return objClasses, nil
 }
 
 func (c *cmdb) UpdateObjClassification(ctx context.Context, clsId string, objCls *types.ObjClassification) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
+	condition := bson.M{
+		model.ClassificationId: clsId,
+	}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjClassification{}.TableName(),
-		model.ClassificationId,
-		clsId); !exists {
+		condition); !exists {
 		return nil, errors.New("this objCls id does not exists")
 	}
 
-	return c.factory.Cmdb.Update(ctx, model.ObjClassification{}.TableName(), model.ClassificationId, clsId, &model.ObjClassification{
+	return c.factory.Cmdb.UpdateWithFilter(ctx, model.ObjClassification{}.TableName(), condition, &model.ObjClassification{
 		UpdatedAt:          time.Now(),
 		ClassificationName: objCls.ClassificationName,
+		ClassificationIcon: objCls.ClassificationIcon,
 	})
 }
 
 func (c *cmdb) DeleteObjClassification(ctx context.Context, clsId string) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
+	condition := bson.M{
+		model.ClassificationId: clsId,
+	}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjClassification{}.TableName(),
-		model.ClassificationId,
-		clsId); !exists {
+		condition); !exists {
 		return nil, errors.New("this objCls id does not exists")
 	}
 
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjectDes{}.TableName(),
-		model.ClassificationId,
-		clsId); exists {
+		condition); exists {
 		return nil, errors.New("the classification contains a model and cannot be deleted")
 	}
 
-	return c.factory.Cmdb.Delete(ctx, model.ObjClassification{}.TableName(), model.ClassificationId, clsId)
+	return c.factory.Cmdb.DeleteWithFilter(ctx, model.ObjClassification{}.TableName(), condition)
 }
 
 func (c *cmdb) CreateObject(ctx context.Context, obj *types.ObjectDes) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
-		model.ObjClassification{}.TableName(),
-		model.ClassificationId,
-		obj.ClassificationId); !exists {
-		return nil, errors.New("this objCls id does not exists")
+	clsCondition := bson.M{
+		model.ClassificationId: obj.ClassificationId,
+	}
+	objCondition := bson.M{
+		model.ObjectId: obj.ObjectId,
 	}
 
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		model.ObjClassification{}.TableName(),
+		clsCondition); !exists {
+		return nil, errors.New("this objCls id does not exists")
+	}
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjectDes{}.TableName(),
-		model.ObjectId,
-		obj.ObjectId); exists {
+		objCondition); exists {
 		return nil, errors.New("this object id already exists")
 	}
 
@@ -134,21 +154,28 @@ func (c *cmdb) CreateObject(ctx context.Context, obj *types.ObjectDes) (interfac
 		ObjectName:       obj.ObjectName,
 		ClassificationId: obj.ClassificationId,
 	}
-
-	if _, err := c.CreateObjectAttr(ctx, &types.ObjectAttr{
+	objectAttDes := &model.ObjectAttDes{
 		ObjectId:     obj.ObjectId,
 		PropertyId:   model.InstId,
 		PropertyName: model.InstName,
 		PropertyType: "string",
-	}); err != nil {
-		return nil, err
 	}
 
-	return c.factory.Cmdb.Create(ctx, objectDes.TableName(), objectDes)
+	return c.factory.Cmdb.CreateObjectWithTransaction(ctx, objectDes, objectAttDes)
 }
 
 func (c *cmdb) ListObject(ctx context.Context, clsId string) ([]types.ObjectDes, error) {
-	cursor, err := c.factory.Cmdb.ListWithFilter(ctx, model.ObjectDes{}.TableName(), model.ClassificationId, clsId)
+	condition := bson.M{
+		model.ClassificationId: clsId,
+	}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		model.ObjClassification{}.TableName(),
+		condition); exists {
+		return nil, errors.New("this objCls id already exists")
+	}
+
+	cursor, err := c.factory.Cmdb.ListWithFilter(ctx, model.ObjectDes{}.TableName(), condition)
 	if err != nil {
 		return nil, err
 	}
@@ -166,22 +193,30 @@ func (c *cmdb) ListObject(ctx context.Context, clsId string) ([]types.ObjectDes,
 		})
 	}
 
+	if err = cursor.Close(ctx); err != nil {
+		return nil, err
+	}
+
 	return objects, nil
 }
 
 func (c *cmdb) UpdateObject(ctx context.Context, objId string, obj *types.ObjectDes) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
-		model.ObjectDes{}.TableName(),
-		model.ObjectId,
-		objId); !exists {
-		return nil, errors.New("this object id does not exists")
+	objCondition := bson.M{
+		model.ObjectId: objId,
+	}
+	clsCondition := bson.M{
+		model.ClassificationId: obj.ClassificationId,
 	}
 
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		model.ObjectDes{}.TableName(),
+		objCondition); !exists {
+		return nil, errors.New("this object id does not exists")
+	}
 	if obj.ClassificationId != "" {
-		if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
+		if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 			model.ObjClassification{}.TableName(),
-			model.ClassificationId,
-			obj.ClassificationId); !exists {
+			clsCondition); !exists {
 			return nil, errors.New("this objCls id does not exists")
 		}
 	}
@@ -192,35 +227,45 @@ func (c *cmdb) UpdateObject(ctx context.Context, objId string, obj *types.Object
 		ClassificationId: obj.ClassificationId,
 	}
 
-	return c.factory.Cmdb.Update(ctx, model.ObjectDes{}.TableName(), model.ObjectId, objId, object)
+	return c.factory.Cmdb.UpdateWithFilter(ctx, model.ObjectDes{}.TableName(), objCondition, object)
 }
 
 func (c *cmdb) DeleteObject(ctx context.Context, objId string) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
-		model.ObjectDes{}.TableName(),
-		model.ObjectId,
-		objId); !exists {
-		return nil, errors.New("this object id does not exists")
+	condition := bson.M{
+		model.ObjectId: objId,
 	}
 
-	return c.factory.Cmdb.Delete(ctx, model.ObjectDes{}.TableName(), model.ObjectId, objId)
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		model.ObjectDes{}.TableName(),
+		condition); !exists {
+		return nil, errors.New("this object id does not exists")
+	}
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		fmt.Sprintf("Asst_%s", objId),
+		nil); exists {
+		return nil, errors.New("the object contains a data and cannot be deleted")
+	}
+
+	return c.factory.Cmdb.DeleteWithFilter(ctx, model.ObjectDes{}.TableName(), condition)
 }
 
 func (c *cmdb) CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
-		model.ObjectDes{}.TableName(),
-		model.ObjectId,
-		obj.ObjectId); !exists {
-		return nil, errors.New("this object id does not exists")
+	objCondition := bson.M{
+		model.ObjectId: obj.ObjectId,
 	}
-
-	conditions := map[string]string{
+	objAttCondition := bson.M{
 		model.ObjectId:   obj.ObjectId,
 		model.PropertyId: obj.PropertyId,
 	}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		model.ObjectDes{}.TableName(),
+		objCondition); !exists {
+		return nil, errors.New("this object id does not exists")
+	}
 	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjectAttDes{}.TableName(),
-		conditions); exists {
+		objAttCondition); exists {
 		return nil, errors.New("this property id already exists")
 	}
 
@@ -237,7 +282,17 @@ func (c *cmdb) CreateObjectAttr(ctx context.Context, obj *types.ObjectAttr) (int
 }
 
 func (c *cmdb) ListObjectAttr(ctx context.Context, objId string) ([]types.ObjectAttr, error) {
-	cursor, err := c.factory.Cmdb.ListWithFilter(ctx, model.ObjectAttDes{}.TableName(), model.ObjectId, objId)
+	condition := bson.M{
+		model.ObjectId: objId,
+	}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		model.ObjectDes{}.TableName(),
+		condition); !exists {
+		return nil, errors.New("this object id does not exists")
+	}
+
+	cursor, err := c.factory.Cmdb.ListWithFilter(ctx, model.ObjectAttDes{}.TableName(), condition)
 	if err != nil {
 		return nil, err
 	}
@@ -256,18 +311,31 @@ func (c *cmdb) ListObjectAttr(ctx context.Context, objId string) ([]types.Object
 		})
 	}
 
+	if err = cursor.Close(ctx); err != nil {
+		return nil, err
+	}
+
 	return objAttrs, nil
 }
 
 func (c *cmdb) UpdateObjectAttr(ctx context.Context, objId, propertyId string, obj *types.ObjectAttr) (interface{}, error) {
-	conditions := map[string]string{
+	objCondition := bson.M{
+		model.ObjectId: obj,
+	}
+	objAttDesCondition := bson.M{
 		model.ObjectId:   objId,
 		model.PropertyId: propertyId,
 	}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		model.ObjectDes{}.TableName(),
+		objCondition); !exists {
+		return nil, errors.New("this object id does not exists")
+	}
 	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjectAttDes{}.TableName(),
-		conditions); !exists {
-		return nil, errors.New("this property id does not exists")
+		objAttDesCondition); !exists {
+		return nil, errors.New("this property id or object id does not exists")
 	}
 
 	object := &model.ObjectAttDes{
@@ -275,36 +343,44 @@ func (c *cmdb) UpdateObjectAttr(ctx context.Context, objId, propertyId string, o
 		PropertyName: obj.PropertyName,
 	}
 
-	return c.factory.Cmdb.UpdateWithFilter(ctx, model.ObjectAttDes{}.TableName(), conditions, object)
+	return c.factory.Cmdb.UpdateWithFilter(ctx, model.ObjectAttDes{}.TableName(), objAttDesCondition, object)
 }
 
 func (c *cmdb) DeleteObjectAttr(ctx context.Context, objId, propertyId string) (interface{}, error) {
-	conditions := map[string]string{
+	objCondition := bson.M{
+		model.ObjectId: objId,
+	}
+	objAttDesCondition := bson.M{
 		model.ObjectId:   objId,
 		model.PropertyId: propertyId,
 	}
+
 	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
-		model.ObjectAttDes{}.TableName(),
-		conditions); !exists {
+		model.ObjectDes{}.TableName(),
+		objCondition); !exists {
 		return nil, errors.New("this object id does not exists")
 	}
-
-	update := bson.M{
-		propertyId: "",
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		model.ObjectAttDes{}.TableName(),
+		objAttDesCondition); !exists {
+		return nil, errors.New("this property id or object id does not exists")
 	}
 
-	if _, err := c.factory.Cmdb.DeleteInstDataField(ctx, fmt.Sprintf("Asst_%s", objId), model.ObjectId, objId, update); err != nil {
-		return nil, err
-	}
-
-	return c.factory.Cmdb.DeleteWithFilter(ctx, model.ObjectDes{}.TableName(), conditions)
+	return c.factory.Cmdb.DeleteObjectAttrWithTransaction(ctx, objId, propertyId, objAttDesCondition)
 }
 
 func (c *cmdb) CreateInstanceData(ctx context.Context, objId string, obj map[string]string) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
+	objCondition := bson.M{model.ObjectId: objId,}
+	instCondition := bson.M{model.InstId: obj[model.InstId]}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		model.ObjectDes{}.TableName(),
+		objCondition); !exists {
+		return nil, errors.New("this object id does not exists")
+	}
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		fmt.Sprintf("Asst_%s", objId),
-		model.InstId,
-		obj[model.InstId]); exists {
+		instCondition); exists {
 		return nil, errors.New("this inst id already exists")
 	}
 
@@ -320,23 +396,21 @@ func (c *cmdb) CreateInstanceData(ctx context.Context, objId string, obj map[str
 		}
 	}
 
-	result, err := c.factory.Cmdb.Create(ctx, fmt.Sprintf("Asst_%s", objId), newData)
-	if err != nil {
-		return nil, err
-	}
-
-	return result, nil
+	return c.factory.Cmdb.Create(ctx, fmt.Sprintf("Asst_%s", objId), newData)
 }
 
 func (c *cmdb) ListInstanceData(ctx context.Context, objId string) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
+	condition := bson.M{
+		model.InstId: objId,
+	}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjectDes{}.TableName(),
-		model.ObjectId,
-		objId); !exists {
+		condition); !exists {
 		return nil, errors.New("this inst id does not exists")
 	}
 
-	cursor, err := c.factory.Cmdb.List(ctx, fmt.Sprintf("Asst_%s", objId))
+	cursor, err := c.factory.Cmdb.ListWithFilter(ctx, fmt.Sprintf("Asst_%s", objId), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -347,37 +421,48 @@ func (c *cmdb) ListInstanceData(ctx context.Context, objId string) (interface{},
 		if err = cursor.Decode(&v); err != nil {
 			return nil, err
 		}
-		objData = append(objData, v) v
+		objData = append(objData, v)
 	}
 
 	return objData, nil
 }
 
 func (c *cmdb) UpdateInstanceData(ctx context.Context, objId string, obj map[string]string) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
+	condition := bson.M{
+		model.ObjectId: objId,
+	}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjectDes{}.TableName(),
-		model.ObjectId,
-		objId); !exists {
+		condition); !exists {
 		return nil, nil
 	}
 
-	objData, err := c.factory.Cmdb.Update(ctx, fmt.Sprintf("Asst_%s", objId), model.ObjectId, objId, obj)
-	if err != nil {
-		return nil, err
+	var updateData map[string]string
+	for k, v := range obj {
+		if k != model.InstId {
+			updateData[k] = v
+		}
 	}
 
-	return objData, nil
+	return c.factory.Cmdb.UpdateWithFilter(ctx, fmt.Sprintf("Asst_%s", objId), condition, updateData)
 }
 
 func (c *cmdb) DeleteInstanceData(ctx context.Context, objId, instId string) (interface{}, error) {
-	if exists, _ := c.factory.Cmdb.CheckIdExists(ctx,
+	objCondition := bson.M{
+		model.ObjectId: objId,
+	}
+	instCondition := bson.M{
+		model.InstId: instId,
+	}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjectDes{}.TableName(),
-		model.ObjectId,
-		objId); !exists {
+		objCondition); !exists {
 		return nil, nil
 	}
 
-	objData, err := c.factory.Cmdb.Delete(ctx, fmt.Sprintf("Asst_%s", objId), model.ObjectId, objId)
+	objData, err := c.factory.Cmdb.DeleteWithFilter(ctx, fmt.Sprintf("Asst_%s", objId), instCondition)
 	if err != nil {
 		return nil, err
 	}
