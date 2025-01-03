@@ -41,5 +41,5 @@ func Run(o *options.ServerRunOptions) error {
 
 	router.InstallRouters(o)
 
-	return srv.ListenAndServe()
+	srv.ListenAndServe()
 }

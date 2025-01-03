@@ -428,7 +428,7 @@ func (cm *cmdbRouter) deleteInstAssociation(c *gin.Context) {
 
 	instAsstId := c.Param("instAsstId")
 
-	result, err := cm.control.CMDB().DeleteInstAsst(context.TODO(), instAsstId)
+	result, err := cm.control.CMDB().DeleteInstAsst(context.TODO(), objAsstId)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return

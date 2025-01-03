@@ -32,3 +32,10 @@ type ObjAsstDes struct {
 	DestObjId string `json:"dest_obj_id"`
 	AsstId    string `json:"asst_id"`
 }
+
+type InstAsstDes struct {
+	ObjAsstId string `json:"obj_asst_id"`
+	SrcObjId  string `json:"src_obj_id"`
+	DestObjId string `json:"dest_obj_id"`
+	AsstId    string `json:"asst_id"`
+}

@@ -5,64 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37a0de76-84cb-4614-9b3a-bddee1a103b7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141357.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141407.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141414.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141437.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141628.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141638.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141647.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141700.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141705.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141717.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T141909.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142202.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142205.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142210.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142218.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142228.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142229.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142230.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142232.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142346.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142407.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142419.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142549.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142557.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142627.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142638.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142650.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142653.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142919.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142931.404.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142939.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142945.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T142955.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T143233.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T143452.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T143505.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T143522.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T143557.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T143606.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T143617.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T143623.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T143641.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T163232.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T163235.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T163237.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T163238.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T163329.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T163348.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T163403.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-12-31T163407.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/server/router/cmdb/cmdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/server/router/cmdb/cmdb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/server/router/cmdb/cmdb_routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/server/router/cmdb/cmdb_routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/app/options/options.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/app/options/options.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/app/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/app/server.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/controller/cmdb/cmdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/cmdb/cmdb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/db/model/cmdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/db/model/cmdb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/types/cmdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/types/cmdb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/fortis.http" beforeDir="false" afterPath="$PROJECT_DIR$/tests/fortis.http" afterDir="false" />
     </list>
@@ -90,43 +37,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "Go Build.go build github.com/darianJmy/fortis-services/cmd.executor": "Run",
-    "HTTP Request.fortis | 创建值.executor": "Run",
-    "HTTP Request.fortis | 创建分组.executor": "Run",
-    "HTTP Request.fortis | 创建属性.executor": "Run",
-    "HTTP Request.fortis | 创建模型.executor": "Run",
-    "HTTP Request.fortis | 创建模型数据.executor": "Run",
-    "HTTP Request.fortis | 删除分组.executor": "Run",
-    "HTTP Request.fortis | 更新分组信息.executor": "Run",
-    "HTTP Request.fortis | 更新模型.executor": "Run",
-    "HTTP Request.fortis | 更新模型数据#2.executor": "Run",
-    "HTTP Request.fortis | 更新模型数据.executor": "Run",
-    "HTTP Request.fortis | 查询分组#2.executor": "Run",
-    "HTTP Request.fortis | 查询分组.executor": "Run",
-    "HTTP Request.fortis | 查询分组下的模型.executor": "Run",
-    "HTTP Request.fortis | 查询分组信息.executor": "Run",
-    "HTTP Request.fortis | 查询模型下属性.executor": "Run",
-    "HTTP Request.fortis | 查询模型数据.executor": "Run",
-    "HTTP Request.fortis | 查询资源.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "main",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "E:/Work/sample-project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "go.autoimport"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go Build.go build github.com/darianJmy/fortis-services/cmd.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 创建值.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 创建分组.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 创建属性.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 创建模型.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 创建模型数据.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 删除分组.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 更新分组信息.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 更新模型.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 更新模型数据#2.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 更新模型数据.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 查询分组#2.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 查询分组.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 查询分组下的模型.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 查询分组信息.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 查询模型下属性.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 查询模型数据.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.fortis | 查询资源.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Work/sample-project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;go.autoimport&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Work\fortis-services\pkg\controller" />
@@ -135,8 +82,26 @@
       <recent name="E:\Work\fortis-services\api\server\router" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.fortis | 查询模型数据">
-    <configuration name="fortis | 更新模型数据" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="12" requestIdentifier="更新模型数据" runType="Run single request">
+  <component name="RunManager" selected="HTTP Request.fortis | 更新模型数据">
+    <configuration name="fortis | 查询分组信息" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="2" requestIdentifier="查询分组信息" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 创建属性" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="8" requestIdentifier="创建属性" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 查询资源" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" requestIdentifier="查询资源" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 创建分组" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="2" requestIdentifier="创建分组" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 创建分组" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" requestIdentifier="创建分组" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 更新分组信息" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="3" requestIdentifier="更新分组信息" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 删除分组" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="4" requestIdentifier="删除分组" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="fortis | 查询模型下属性" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="9" requestIdentifier="查询模型下属性" runType="Run single request">
@@ -163,37 +128,16 @@
     <configuration name="fortis | 查询模型下属性" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="9" requestIdentifier="查询模型下属性" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="fortis | 查询分组信息" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="2" requestIdentifier="查询分组信息" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="fortis | 创建属性" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="8" requestIdentifier="创建属性" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="fortis | 查询资源" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" requestIdentifier="查询资源" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="fortis | 创建分组" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="2" requestIdentifier="创建分组" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="fortis | 创建分组" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" requestIdentifier="创建分组" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="fortis | 更新分组信息" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="3" requestIdentifier="更新分组信息" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="fortis | 删除分组" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="4" requestIdentifier="删除分组" runType="Run single request">
-      <method v="2" />
-    </configuration>
     <configuration name="fortis | 更新模型数据#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="13" requestIdentifier="更新模型数据#2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fortis | 更新模型数据" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/tests/fortis.http" index="12" requestIdentifier="更新模型数据" runType="Run single request">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.fortis | 查询模型数据" />
         <item itemvalue="HTTP Request.fortis | 更新模型数据#2" />
         <item itemvalue="HTTP Request.fortis | 更新模型数据" />
-        <item itemvalue="HTTP Request.fortis | 创建模型数据" />
-        <item itemvalue="HTTP Request.fortis | 查询模型下属性" />
       </list>
     </recent_temporary>
   </component>

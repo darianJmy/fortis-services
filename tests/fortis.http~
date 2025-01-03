@@ -49,6 +49,10 @@ Content-Type: application/json
   "classification_id": "company"
 }
 
+### 删除模型
+DELETE http://{{host}}:{{port}}/cmdb/update/object/development
+Content-Type: application/json
+
 ### 创建属性
 POST http://{{host}}:{{port}}/cmdb/create/objectAttr
 Content-Type: application/json
@@ -74,6 +78,10 @@ Content-Type: application/json
   "age": "18"
 }
 
+### 创建模型数据
+DELETE http://{{host}}:{{port}}/cmdb/create/object/instance/business
+Content-Type: application/json
+
 ### 查询模型数据
 GET http://{{host}}:{{port}}/cmdb/list/object/instance/business
 Content-Type: application/json
@@ -90,5 +98,5 @@ Content-Type: application/json
 }
 
 ### 更新模型数据
-DELETE http://{{host}}:{{port}}/cmdb/update/object/instance/business/ji
+DELETE http://{{host}}:{{port}}/cmdb/delete/object/instance/business/ji
 Content-Type: application/json

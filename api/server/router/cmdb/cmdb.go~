@@ -52,6 +52,6 @@ func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
 
 		cmRoute.POST("/create/instAssociation", cm.createInstAssociation)
 		cmRoute.GET("/list/instAssociation/:objId", cm.listInstAssociation)
-		cmRoute.DELETE("/delete/instAssociation/:instAsstId", cm.deleteInstAssociation)
+		cmRoute.DELETE("/delete/instAssociation/:objAsstId", cm.deleteInstAssociation)
 	}
 }

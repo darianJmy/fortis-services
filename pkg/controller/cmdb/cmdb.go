@@ -45,6 +45,10 @@ type Interface interface {
 	CreateObjAsst(ctx context.Context, objAsst *types.ObjAsstDes) (interface{}, error)
 	ListObjAsst(ctx context.Context, objId string) (interface{}, error)
 	DeleteObjAsst(ctx context.Context, objAsstId string) (interface{}, error)
+
+	CreateInstAsst(ctx context.Context, instAsst *types.InstAsstDes) (interface{}, error)
+	ListInstAsst(ctx context.Context, objId string) (interface{}, error)
+	DeleteInstAsst(ctx context.Context, instAsstId string) (interface{}, error)
 }
 
 type cmdb struct {
@@ -566,6 +570,16 @@ func (c *cmdb) ListObjAsst(ctx context.Context, objId string) (interface{}, erro
 }
 
 func (c *cmdb) DeleteObjAsst(ctx context.Context, objAsstId string) (interface{}, error) {
+	return nil, nil
+}
+
+func (c *cmdb) CreateInstAsst(ctx context.Context, instAsst *types.InstAsstDes) (interface{}, error) {
+	return nil, nil
+}
+
+func (c *cmdb) ListInstAsst(ctx context.Context, objId string) (interface{}, error) { return nil, nil }
+
+func (c *cmdb) DeleteInstAsst(ctx context.Context, instAsstId string) (interface{}, error) {
 	return nil, nil
 }
 
