@@ -71,7 +71,7 @@ func (s *ServerRunOptions) Registry() error {
 
 func (s *ServerRunOptions) registerMongo() (*mongo.Database, error) {
 	mongoConfig := s.Config.Mongo
-	dsn := fmt.Sprintf("mongodb://%s:%s@%s:%d",
+	dsn := fmt.Sprintf("mongodb://%s:%s@%s:%d/?replicaSet=rs0&authSource=cmdb",
 		mongoConfig.User,
 		mongoConfig.Password,
 		mongoConfig.Host,

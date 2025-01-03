@@ -1,0 +1,11 @@
+{
+  "code": 200,
+  "result": [
+    {
+      "_id": "67777c40bac27f8af4a0f96c",
+      "age": "18",
+      "inst_id": "ji"
+    }
+  ],
+  "message": "success"
+}

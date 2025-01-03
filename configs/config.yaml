@@ -3,9 +3,16 @@ default:
   listen: 8888
   autoMigrate: true
 
+#mongo:
+#  host: 122.152.212.112
+#  user: mongo_hDZc3Q
+#  password: mongo_bnxZea
+#  port: 27019
+#  name: fortis
+
 mongo:
-  host: 122.152.212.112
-  user: mongo_hDZc3Q
-  password: mongo_bnxZea
-  port: 27019
+  host: 192.168.89.129
+  user: cc
+  password: cc
+  port: 27017
   name: fortis

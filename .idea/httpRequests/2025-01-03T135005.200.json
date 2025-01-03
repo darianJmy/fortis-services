@@ -1,0 +1,18 @@
+{
+  "code": 200,
+  "result": [
+    {
+      "property_id": "inst_id",
+      "property_name": "实例名称",
+      "property_type": "string",
+      "object_id": "business"
+    },
+    {
+      "property_id": "age",
+      "property_name": "年龄",
+      "property_type": "string",
+      "object_id": "business"
+    }
+  ],
+  "message": "success"
+}

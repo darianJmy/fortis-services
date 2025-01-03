@@ -6,12 +6,12 @@ POST http://{{host}}:{{port}}/cmdb/create/objClassification
 Content-Type: application/json
 
 {
-  "classification_id": "school",
-  "classification_name": "学校"
+  "classification_id": "company",
+  "classification_name": "公司"
 }
 
 ### 查询分组信息
-POST http://{{host}}:{{port}}/cmdb/list/objClassification
+GET http://{{host}}:{{port}}/cmdb/list/objClassification
 Content-Type: application/json
 
 ### 更新分组信息
@@ -32,18 +32,13 @@ POST http://{{host}}:{{port}}/cmdb/create/object
 Content-Type: application/json
 
 {
-  "object_id": "development",
-  "object_name": "开发部门",
+  "object_id": "business",
+  "object_name": "业务部门",
   "classification_id": "company"
 }
 
 ### 查询分组下的模型
-POST http://{{host}}:{{port}}/cmdb/list/object
-Content-Type: application/json
-
-{
-  "classification_id": "company"
-}
+GET http://{{host}}:{{port}}/cmdb/list/object/company
 
 ### 更新模型
 PUT http://{{host}}:{{port}}/cmdb/update/object/development
@@ -66,23 +61,34 @@ Content-Type: application/json
 }
 
 ### 查询模型下属性
-POST http://{{host}}:{{port}}/cmdb/list/objectAttr
-Content-Type: application/json
-
-{
-  "object_id": "business"
-}
+GET http://{{host}}:{{port}}/cmdb/list/objectAttr/business
 
 ### 创建模型数据
-POST http://{{host}}:{{port}}/cmdb/create/instance/object/business
+POST http://{{host}}:{{port}}/cmdb/create/object/instance/business
 Content-Type: application/json
 
 {
+  "inst_id": "ji",
   "homeAddress": "苏州吴中郭巷",
   "name": "jimmy",
   "age": "18"
 }
 
 ### 查询模型数据
-POST http://{{host}}:{{port}}/cmdb/list/instance/object/business
+GET http://{{host}}:{{port}}/cmdb/list/object/instance/business
+Content-Type: application/json
+
+### 更新模型数据
+PUT http://{{host}}:{{port}}/cmdb/update/object/instance/business/ji
+Content-Type: application/json
+
+{
+  "inst_id": "jiji",
+  "homeAddress": "苏州吴中郭巷尹山湖",
+  "name": "jimmy",
+  "age": "18"
+}
+
+### 更新模型数据
+DELETE http://{{host}}:{{port}}/cmdb/delete/object/instance/business/ji
 Content-Type: application/json

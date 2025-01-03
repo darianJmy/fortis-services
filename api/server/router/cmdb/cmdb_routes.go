@@ -258,7 +258,8 @@ func (cm *cmdbRouter) listInstData(c *gin.Context) {
 func (cm *cmdbRouter) updateInstData(c *gin.Context) {
 	r := httputils.NewResponse()
 
-	objId := c.Param("objId")
+	p1 := c.Param("objId")
+	p2 := c.Param("instId")
 
 	var inst map[string]string
 	if err := c.ShouldBindJSON(&inst); err != nil {
@@ -266,7 +267,7 @@ func (cm *cmdbRouter) updateInstData(c *gin.Context) {
 		return
 	}
 
-	result, err := cm.control.CMDB().UpdateInstanceData(context.TODO(), objId, inst)
+	result, err := cm.control.CMDB().UpdateInstanceData(context.TODO(), p1, p2, inst)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return
@@ -292,13 +293,52 @@ func (cm *cmdbRouter) deleteInstData(c *gin.Context) {
 	httputils.SetSuccess(c, r)
 }
 
-func (cm *cmdbRouter) createAssociationType(c *gin.Context) {}
+func (cm *cmdbRouter) createAssociationType(c *gin.Context) {
+	r := httputils.NewResponse()
 
-func (cm *cmdbRouter) listAssociationType(c *gin.Context) {}
+	var asstType types.AssociationType
+	if err := c.ShouldBindJSON(&asstType); err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
 
-func (cm *cmdbRouter) updateAssociationType(c *gin.Context) {}
+	result, err := cm.control.CMDB().CreateAssociationType(context.TODO(), &asstType)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
 
-func (cm *cmdbRouter) deleteAssociationType(c *gin.Context) {}
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) listAssociationType(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	result, err := cm.control.CMDB().ListAssociationType(context.TODO())
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
+
+func (cm *cmdbRouter) deleteAssociationType(c *gin.Context) {
+	r := httputils.NewResponse()
+
+	p := c.Param("associationId")
+
+	result, err := cm.control.CMDB().DeleteAssociationType(context.TODO(), p)
+	if err != nil {
+		httputils.SetFailed(c, r, err)
+		return
+	}
+
+	r.Result = result
+	httputils.SetSuccess(c, r)
+}
 
 func (cm *cmdbRouter) createInstAssociation(c *gin.Context) {}
 

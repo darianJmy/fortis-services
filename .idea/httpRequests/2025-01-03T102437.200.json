@@ -1,0 +1,4 @@
+{
+  "code": 400,
+  "message": "(IllegalOperation) Transaction numbers are only allowed on a replica set member or mongos"
+}

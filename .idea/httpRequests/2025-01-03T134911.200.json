@@ -1,0 +1,12 @@
+{
+  "code": 200,
+  "result": [
+    {
+      "object_id": "business",
+      "object_name": "业务部门",
+      "classification_id": "company",
+      "description": ""
+    }
+  ],
+  "message": "success"
+}

@@ -39,12 +39,11 @@ func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
 
 		cmRoute.POST("/create/object/instance/:objId", cm.createInstData)
 		cmRoute.GET("/list/object/instance/:objId", cm.listInstData)
-		cmRoute.PUT("/update/object/instance/:objId", cm.updateInstData)
+		cmRoute.PUT("/update/object/instance/:objId/:instId", cm.updateInstData)
 		cmRoute.DELETE("/delete/object/instance/:objId/:instId", cm.deleteInstData)
 
 		cmRoute.POST("/create/associationType", cm.createAssociationType)
 		cmRoute.GET("/list/associationType", cm.listAssociationType)
-		cmRoute.PUT("/update/associationType/associationId", cm.updateAssociationType)
 		cmRoute.POST("/delete/associationType/:associationId", cm.deleteAssociationType)
 
 		cmRoute.POST("/create/instAssociation", cm.createInstAssociation)

@@ -1,0 +1,12 @@
+{
+  "code": 200,
+  "result": [
+    {
+      "object_id": "development",
+      "object_name": "开发部门",
+      "classification_id": "school",
+      "description": ""
+    }
+  ],
+  "message": "success"
+}

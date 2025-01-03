@@ -10,6 +10,7 @@ type ObjectDes struct {
 	ObjectId         string `json:"object_id"`
 	ObjectName       string `json:"object_name"`
 	ClassificationId string `json:"classification_id"`
+	Description      string `json:"description"`
 }
 
 type ObjectAttr struct {
@@ -17,4 +18,17 @@ type ObjectAttr struct {
 	PropertyName string `json:"property_name"`
 	PropertyType string `json:"property_type"`
 	ObjectId     string `json:"object_id"`
+}
+
+type AssociationType struct {
+	AsstId  string `json:"asst_id"`
+	SrcDes  string `json:"src_des"`
+	DestDes string `json:"dest_des"`
+}
+
+type ObjAsstDes struct {
+	ObjAsstId string `json:"obj_asst_id"`
+	SrcObjId  string `json:"src_obj_id"`
+	DestObjId string `json:"dest_obj_id"`
+	AsstId    string `json:"asst_id"`
 }

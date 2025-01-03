@@ -1,0 +1,11 @@
+{
+  "code": 200,
+  "result": [
+    {
+      "_id": "67777ba6bac27f8af4a0f96b",
+      "age": "18",
+      "inst_id": "季明宇"
+    }
+  ],
+  "message": "success"
+}

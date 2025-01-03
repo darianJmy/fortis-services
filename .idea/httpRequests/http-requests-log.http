@@ -1,15 +1,314 @@
-POST http://127.0.0.1:8888/cmdb/list/objectAttr
+GET http://127.0.0.1:8888/cmdb/list/object/instance/business
 Content-Type: application/json
-Content-Length: 29
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T140221.200.json
+
+###
+
+DELETE http://127.0.0.1:8888/cmdb/delete/object/instance/business/ji
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T140218.200.json
+
+###
+
+DELETE http://127.0.0.1:8888/cmdb/delete/object/instance/business/ji
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T140215.200.json
+
+###
+
+DELETE http://127.0.0.1:8888/cmdb/update/object/instance/business/ji
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T140210.404.txt
+
+###
+
+DELETE http://127.0.0.1:8888/cmdb/update/object/instance/business/ji
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T140208.404.txt
+
+###
+
+PUT http://127.0.0.1:8888/cmdb/update/object/instance/business/ji
+Content-Type: application/json
+Content-Length: 105
 User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
 
 {
-  "object_id": "business"
+  "inst_id": "jiji",
+  "homeAddress": "苏州吴中郭巷尹山湖",
+  "name": "jimmy",
+  "age": "18"
 }
 
-<> 2024-12-31T163407.200.json
+<> 2025-01-03T140122.200.json
+
+###
+
+PUT http://127.0.0.1:8888/cmdb/update/object/instance/business/ji
+Content-Type: application/json
+Content-Length: 105
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "inst_id": "jiji",
+  "homeAddress": "苏州吴中郭巷尹山湖",
+  "name": "jimmy",
+  "age": "18"
+}
+
+###
+
+PUT http://127.0.0.1:8888/cmdb/list/object/instance/business/ji
+Content-Type: application/json
+Content-Length: 105
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "inst_id": "jiji",
+  "homeAddress": "苏州吴中郭巷尹山湖",
+  "name": "jimmy",
+  "age": "18"
+}
+
+<> 2025-01-03T135734.404.txt
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/object/instance/business
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T135723.200.json
+
+###
+
+POST http://127.0.0.1:8888/cmdb/create/object/instance/business
+Content-Type: application/json
+Content-Length: 94
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "inst_id": "ji",
+  "homeAddress": "苏州吴中郭巷",
+  "name": "jimmy",
+  "age": "18"
+}
+
+<> 2025-01-03T135720.200.json
+
+###
+
+PUT http://127.0.0.1:8888/cmdb/list/object/instance/business/季明宇
+Content-Type: application/json
+Content-Length: 110
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "inst_id": "季明宇",
+  "homeAddress": "苏州吴中郭巷尹山湖",
+  "name": "jimmy",
+  "age": "18"
+}
+
+<> 2025-01-03T135635.404.txt
+
+###
+
+PUT http://127.0.0.1:8888/cmdb/list/object/instance/business/季明宇
+Content-Type: application/json
+Content-Length: 110
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "inst_id": "季明宇",
+  "homeAddress": "苏州吴中郭巷尹山湖",
+  "name": "jimmy",
+  "age": "18"
+}
+
+<> 2025-01-03T135631.404.txt
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/object/instance/business
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T135542.200.json
+
+###
+
+POST http://127.0.0.1:8888/cmdb/create/object/instance/business
+Content-Type: application/json
+Content-Length: 101
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "inst_id": "季明宇",
+  "homeAddress": "苏州吴中郭巷",
+  "name": "jimmy",
+  "age": "18"
+}
+
+<> 2025-01-03T135539.200.json
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/object/instance/business
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T135534.200.json
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/object/instance/business
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T135458.200.json
+
+###
+
+POST http://127.0.0.1:8888/cmdb/create/object/instance/business
+Content-Type: application/json
+Content-Length: 101
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "inst_id": "季明宇",
+  "homeAddress": "苏州吴中郭巷",
+  "name": "jimmy",
+  "age": "18"
+}
+
+<> 2025-01-03T135449.200.json
+
+###
+
+POST http://127.0.0.1:8888/cmdb/create/object/instance/business
+Content-Type: application/json
+Content-Length: 101
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "inst_id": "季明宇",
+  "homeAddress": "苏州吴中郭巷",
+  "name": "jimmy",
+  "age": "18"
+}
+
+<> 2025-01-03T135446.200.json
+
+###
+
+POST http://127.0.0.1:8888/cmdb/create/object/instance/business
+Content-Type: application/json
+Content-Length: 75
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "homeAddress": "苏州吴中郭巷",
+  "name": "jimmy",
+  "age": "18"
+}
+
+<> 2025-01-03T135425.200.json
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/object/instance/business
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T135026.200.json
+
+###
+
+POST http://127.0.0.1:8888/cmdb/create/object/instance/business
+Content-Type: application/json
+Content-Length: 75
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "homeAddress": "苏州吴中郭巷",
+  "name": "jimmy",
+  "age": "18"
+}
+
+<> 2025-01-03T135020.200.json
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/objectAttr/business
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T135005.200.json
 
 ###
 
@@ -27,115 +326,17 @@ Accept: */*
   "property_type": "string"
 }
 
-<> 2024-12-31T163403.200.json
+<> 2025-01-03T135002.200.json
 
 ###
 
-POST http://127.0.0.1:8888/cmdb/create/objectAttr
-Content-Type: application/json
-Content-Length: 112
+GET http://127.0.0.1:8888/cmdb/list/object/company
 User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
+content-length: 0
 
-{
-  "object_id": "business",
-  "property_id": "name",
-  "property_name": "姓名",
-  "property_type": "string"
-}
-
-<> 2024-12-31T163348.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/create/objectAttr
-Content-Type: application/json
-Content-Length: 131
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "business",
-  "property_id": "homeAddress",
-  "property_name": "成员家庭地址",
-  "property_type": "string"
-}
-
-<> 2024-12-31T163329.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/create/objectAttr
-Content-Type: application/json
-Content-Length: 131
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "business",
-  "property_id": "homeAddress",
-  "property_name": "成员家庭地址",
-  "property_type": "string"
-}
-
-<> 2024-12-31T163238.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/create/objectAttr
-Content-Type: application/json
-Content-Length: 131
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "business",
-  "property_id": "homeAddress",
-  "property_name": "成员家庭地址",
-  "property_type": "string"
-}
-
-<> 2024-12-31T163237.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/create/objectAttr
-Content-Type: application/json
-Content-Length: 131
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "business",
-  "property_id": "homeAddress",
-  "property_name": "成员家庭地址",
-  "property_type": "string"
-}
-
-<> 2024-12-31T163235.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/create/objectAttr
-Content-Type: application/json
-Content-Length: 131
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "business",
-  "property_id": "homeAddress",
-  "property_name": "成员家庭地址",
-  "property_type": "string"
-}
-
-<> 2024-12-31T163232.200.json
+<> 2025-01-03T134936.200.json
 
 ###
 
@@ -151,242 +352,17 @@ Accept: */*
   "classification_id": "company"
 }
 
-<> 2024-12-31T143641.200.json
+<> 2025-01-03T134932.200.json
 
 ###
 
-POST http://127.0.0.1:8888/cmdb/list/object
-Content-Type: application/json
-Content-Length: 36
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "classification_id": "company"
-}
-
-<> 2024-12-31T143623.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/list/object
-Content-Type: application/json
-Content-Length: 35
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "classification_id": "school"
-}
-
-<> 2024-12-31T143617.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/list/objClassification
-Content-Type: application/json
+GET http://127.0.0.1:8888/cmdb/list/object/company
 User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
 content-length: 0
 
-<> 2024-12-31T143606.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/object/development
-Content-Type: application/json
-Content-Length: 68
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_name": "开发部门",
-  "classification_id": "school"
-}
-
-<> 2024-12-31T143557.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/object/development
-Content-Type: application/json
-Content-Length: 68
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_name": "开发部门",
-  "classification_id": "学校"
-}
-
-<> 2024-12-31T143522.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/create/objClassification
-Content-Type: application/json
-Content-Length: 70
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "classification_id": "school",
-  "classification_name": "学校"
-}
-
-<> 2024-12-31T143505.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/object/development
-Content-Type: application/json
-Content-Length: 71
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_name": "开发部门",
-  "classification_id": "company21"
-}
-
-<> 2024-12-31T143452.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/object/development
-Content-Type: application/json
-Content-Length: 35
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_name": "开发部门"
-}
-
-<> 2024-12-31T143233.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/object/development
-Content-Type: application/json
-Content-Length: 99
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "development",
-  "object_name": "开发部门",
-  "classification_id": "company"
-}
-
-<> 2024-12-31T142955.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/list/object
-Content-Type: application/json
-Content-Length: 36
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "classification_id": "company"
-}
-
-<> 2024-12-31T142945.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/object/development
-Content-Type: application/json
-Content-Length: 99
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "development",
-  "object_name": "行政部门",
-  "classification_id": "company"
-}
-
-<> 2024-12-31T142939.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/create/object/development
-Content-Type: application/json
-Content-Length: 99
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "development",
-  "object_name": "行政部门",
-  "classification_id": "company"
-}
-
-<> 2024-12-31T142931.404.txt
-
-###
-
-POST http://127.0.0.1:8888/cmdb/create/object
-Content-Type: application/json
-Content-Length: 99
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "development",
-  "object_name": "行政部门",
-  "classification_id": "company"
-}
-
-<> 2024-12-31T142919.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/list/object
-Content-Type: application/json
-Content-Length: 36
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "classification_id": "company"
-}
-
-<> 2024-12-31T142653.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/create/object
-Content-Type: application/json
-Content-Length: 99
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "development",
-  "object_name": "开发部门",
-  "classification_id": "company"
-}
-
-<> 2024-12-31T142650.200.json
+<> 2025-01-03T134911.200.json
 
 ###
 
@@ -403,39 +379,85 @@ Accept: */*
   "classification_id": "company"
 }
 
-<> 2024-12-31T142638.200.json
+<> 2025-01-03T134907.200.json
 
 ###
 
-POST http://127.0.0.1:8888/cmdb/create/object
+DELETE http://127.0.0.1:8888/cmdb/delete/objClassification/school
 Content-Type: application/json
-Content-Length: 102
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T134816.200.json
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/object/company
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T134805.200.json
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/objClassification
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T134747.200.json
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/object/school
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T134621.200.json
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/object/company
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T134616.200.json
+
+###
+
+PUT http://127.0.0.1:8888/cmdb/update/object/development
+Content-Type: application/json
+Content-Length: 68
 User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
 
 {
-  "object_id": "administration",
-  "object_name": "行政部门",
-  "classification_id": "company"
+  "object_name": "开发部门",
+  "classification_id": "school"
 }
 
-<> 2024-12-31T142627.200.json
+<> 2025-01-03T134609.200.json
 
 ###
 
-POST http://127.0.0.1:8888/cmdb/list/object
-Content-Type: application/json
-Content-Length: 36
+GET http://127.0.0.1:8888/cmdb/list/object/company
 User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
+content-length: 0
 
-{
-  "classification_id": "company"
-}
-
-<> 2024-12-31T142557.200.json
+<> 2025-01-03T134554.200.json
 
 ###
 
@@ -452,7 +474,7 @@ Accept: */*
   "classification_id": "company"
 }
 
-<> 2024-12-31T142549.200.json
+<> 2025-01-03T134550.200.json
 
 ###
 
@@ -467,7 +489,18 @@ Accept: */*
   "classification_name": "公司"
 }
 
-<> 2024-12-31T142419.200.json
+<> 2025-01-03T134542.200.json
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/objClassification
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T134533.200.json
 
 ###
 
@@ -482,73 +515,18 @@ Accept: */*
   "classification_name": "学校"
 }
 
-<> 2024-12-31T142407.200.json
+<> 2025-01-03T134530.200.json
 
 ###
 
-POST http://127.0.0.1:8888/cmdb/list/objClassification
+GET http://127.0.0.1:8888/cmdb/list/objClassification
 Content-Type: application/json
 User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
 content-length: 0
 
-<> 2024-12-31T142346.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/list/objClassification
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 0
-
-<> 2024-12-31T142232.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/list/objClassification
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 0
-
-<> 2024-12-31T142230.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/list/objClassification
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 0
-
-<> 2024-12-31T142229.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/list/objClassification
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 0
-
-<> 2024-12-31T142228.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/list/objClassification
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 0
-
-<> 2024-12-31T142218.200.json
+<> 2025-01-03T134517.200.json
 
 ###
 
@@ -564,18 +542,23 @@ Accept: */*
   "classification_name": "公司"
 }
 
-<> 2024-12-31T142210.200.json
+<> 2025-01-03T134512.200.json
 
 ###
 
-POST http://127.0.0.1:8888/cmdb/list/objClassification
+POST http://127.0.0.1:8888/cmdb/create/objClassification
 Content-Type: application/json
+Content-Length: 70
 User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
-content-length: 0
 
-<> 2024-12-31T142205.200.json
+{
+  "classification_id": "school",
+  "classification_name": "学校"
+}
+
+<> 2025-01-03T134458.200.json
 
 ###
 
@@ -591,165 +574,125 @@ Accept: */*
   "classification_name": "公司"
 }
 
-<> 2024-12-31T142202.200.json
+<> 2025-01-03T134432.200.json
+
+###
+
+POST http://127.0.0.1:8888/cmdb/create/object
+Content-Type: application/json
+Content-Length: 99
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "object_id": "development",
+  "object_name": "开发部门",
+  "classification_id": "company"
+}
+
+<> 2025-01-03T102437.200.json
+
+###
+
+POST http://127.0.0.1:8888/cmdb/create/object
+Content-Type: application/json
+Content-Length: 99
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "object_id": "development",
+  "object_name": "开发部门",
+  "classification_id": "company"
+}
+
+<> 2025-01-03T102435.200.json
+
+###
+
+PUT http://127.0.0.1:8888/cmdb/update/objClassification/company
+Content-Type: application/json
+Content-Length: 37
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "classification_name": "公司"
+}
+
+<> 2025-01-03T102419.200.json
+
+###
+
+PUT http://127.0.0.1:8888/cmdb/update/objClassification/company
+Content-Type: application/json
+Content-Length: 43
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "classification_name": "个人公司"
+}
+
+<> 2025-01-03T102354.200.json
+
+###
+
+GET http://127.0.0.1:8888/cmdb/list/objClassification
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-03T102341.200.json
 
 ###
 
 POST http://127.0.0.1:8888/cmdb/create/objClassification
 Content-Type: application/json
-Content-Length: 72
+Content-Length: 71
 User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
 
 {
-  "classification_id": "company1",
+  "classification_id": "company",
   "classification_name": "公司"
 }
 
-<> 2024-12-31T141909.200.json
+<> 2025-01-03T102337.200.json
 
 ###
 
-POST http://127.0.0.1:8888/cmdb/create/object
-Content-Type: application/json
-Content-Length: 99
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "object_id": "development",
-  "object_name": "开发部门",
-  "classification_id": "company"
-}
-
-<> 2024-12-31T141717.200.json
-
-###
-
-DELETE http://127.0.0.1:8888/cmdb/delete/objClassification/company1
+GET http://127.0.0.1:8888/cmdb/list/objClassification
 Content-Type: application/json
 User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
 content-length: 0
 
-<> 2024-12-31T141705.200.json
+<> 2025-01-03T102325.200.json
 
 ###
 
-DELETE http://127.0.0.1:8888/cmdb/delete/objClassification/company
+POST http://127.0.0.1:8888/cmdb/create/objClassification
 Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 0
-
-<> 2024-12-31T141700.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/create/object
-Content-Type: application/json
-Content-Length: 99
+Content-Length: 70
 User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
 
 {
-  "object_id": "development",
-  "object_name": "开发部门",
-  "classification_id": "company"
-}
-
-<> 2024-12-31T141647.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/objClassification/company
-Content-Type: application/json
-Content-Length: 37
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "classification_name": "公司"
-}
-
-<> 2024-12-31T141638.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/objClassification/company
-Content-Type: application/json
-Content-Length: 37
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
+  "classification_id": "school",
   "classification_name": "学校"
 }
 
-<> 2024-12-31T141628.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/objClassification/company
-Content-Type: application/json
-Content-Length: 37
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "classification_name": "学校"
-}
-
-<> 2024-12-31T141437.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/objClassification/company
-Content-Type: application/json
-Content-Length: 37
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "classification_name": "学校"
-}
-
-<> 2024-12-31T141414.200.json
-
-###
-
-PUT http://127.0.0.1:8888/cmdb/update/objClassification/company21
-Content-Type: application/json
-Content-Length: 37
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "classification_name": "学校"
-}
-
-<> 2024-12-31T141407.200.json
-
-###
-
-POST http://127.0.0.1:8888/cmdb/list/objClassification
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/GoLand 2024.1.6
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 0
-
-<> 2024-12-31T141357.200.json
+<> 2025-01-03T102316.200.json
 
 ###
 
