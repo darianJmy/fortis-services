@@ -413,7 +413,7 @@ func (cm *cmdbRouter) listInstAssociation(c *gin.Context) {
 
 	objId := c.Param("objId")
 
-	result, err := cm.control.CMDB().ListObjAsst(context.TODO(), objId)
+	result, err := cm.control.CMDB().ListInstAsst(context.TODO(), objId)
 	if err != nil {
 		httputils.SetFailed(c, r, err)
 		return

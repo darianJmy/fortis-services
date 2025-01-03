@@ -15,7 +15,7 @@ const (
 	AsstId           = "asst_id"
 	ObjAsstId        = "obj_asst_id"
 	SrcObjId         = "src_obj_id"
-	DestObjId        = "dest_obj_id"
+	DestObjId        = "src_obj_id"
 )
 
 type ObjClassification struct {

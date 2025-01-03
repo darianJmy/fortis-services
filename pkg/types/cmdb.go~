@@ -22,6 +22,7 @@ type ObjectAttr struct {
 
 type AssociationType struct {
 	AsstId  string `json:"asst_id"`
+	AsstName string `json:"asst_name"`
 	SrcDes  string `json:"src_des"`
 	DestDes string `json:"dest_des"`
 }
@@ -33,7 +34,7 @@ type ObjAsstDes struct {
 	AsstId    string `json:"asst_id"`
 }
 
-type ObjAsstDes struct {
+type InstAsstDes struct {
 	ObjAsstId string `json:"obj_asst_id"`
 	SrcObjId  string `json:"src_obj_id"`
 	DestObjId string `json:"dest_obj_id"`

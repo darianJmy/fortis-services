@@ -91,7 +91,7 @@ func (c *cmdb) DeleteObjectAttrWithTransaction(ctx context.Context, objId, prope
 		}
 
 		if _, err = c.db.Collection(fmt.Sprintf("Asst_%s", objId)).
-			DeleteMany(ctx, bson.M{"$unset": bson.M{propertyId: ""}}); err != nil {
+			UpdateMany(ctx, bson.M{}, bson.M{"$unset": bson.M{propertyId: ""}}); err != nil {
 			return nil, err
 		}
 		return nil, nil

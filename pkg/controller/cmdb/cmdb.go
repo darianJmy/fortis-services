@@ -310,7 +310,7 @@ func (c *cmdb) ListObjectAttr(ctx context.Context, objId string) ([]types.Object
 }
 
 func (c *cmdb) UpdateObjectAttr(ctx context.Context, objId, propertyId string, obj *types.ObjectAttr) (interface{}, error) {
-	objCondition := bson.M{model.ObjectId: obj}
+	objCondition := bson.M{model.ObjectId: objId}
 	objAttCondition := bson.M{model.ObjectId: objId, model.PropertyId: propertyId}
 
 	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
@@ -472,6 +472,7 @@ func (c *cmdb) CreateAssociationType(ctx context.Context, asstType *types.Associ
 
 	asstDes := &model.AsstDes{
 		AsstId:    asstType.AsstId,
+		AsstName:  asstType.AsstName,
 		SrcDes:    asstType.SrcDes,
 		DestDes:   asstType.DestDes,
 		CreatedAt: time.Now(),
@@ -520,7 +521,7 @@ func (c *cmdb) DeleteAssociationType(ctx context.Context, asstId string) (interf
 }
 
 func (c *cmdb) CreateObjAsst(ctx context.Context, objAsst *types.ObjAsstDes) (interface{}, error) {
-	condition := bson.M{model.ObjAsstId: objAsst.ObjAsstId}
+	condition := bson.M{model.ObjAsstId: fmt.Sprintf("%s_%s_%s", objAsst.SrcObjId, objAsst.ObjAsstId, objAsst.DestObjId)}
 
 	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
 		model.ObjAsstDes{}.TableName(),
@@ -529,7 +530,7 @@ func (c *cmdb) CreateObjAsst(ctx context.Context, objAsst *types.ObjAsstDes) (in
 	}
 
 	asstDes := &model.ObjAsstDes{
-		ObjAsstId: fmt.Sprintf("%s_%s_%s", objAsst.SrcObjId, objAsst.ObjAsstId, objAsst.DestObjId),
+		ObjAsstId: fmt.Sprintf("%s_%s_%s", objAsst.SrcObjId, objAsst.AsstId, objAsst.DestObjId),
 		SrcObjId:  objAsst.SrcObjId,
 		DestObjId: objAsst.DestObjId,
 		AsstId:    objAsst.AsstId,
@@ -541,36 +542,46 @@ func (c *cmdb) CreateObjAsst(ctx context.Context, objAsst *types.ObjAsstDes) (in
 }
 
 func (c *cmdb) ListObjAsst(ctx context.Context, objId string) (interface{}, error) {
-	condition := bson.M{model.SrcObjId: objId}
-
-	cursor, err := c.factory.Cmdb.ListWithFilter(ctx, model.ObjAsstDes{}.TableName(), condition)
-	if err != nil {
-		return nil, err
-	}
+	conditions := []bson.M{{model.SrcObjId: objId}, {model.DestObjId: objId}}
 
 	var objAsstDes []types.ObjAsstDes
-	for cursor.Next(ctx) {
-		var v model.ObjAsstDes
-		if err = cursor.Decode(&v); err != nil {
+	for _, condition := range conditions {
+		cursor, err := c.factory.Cmdb.ListWithFilter(ctx, model.ObjAsstDes{}.TableName(), condition)
+		if err != nil {
 			return nil, err
 		}
-		objAsstDes = append(objAsstDes, types.ObjAsstDes{
-			ObjAsstId: v.ObjAsstId,
-			SrcObjId:  v.SrcObjId,
-			DestObjId: v.DestObjId,
-			AsstId:    v.AsstId,
-		})
-	}
 
-	if err = cursor.Close(ctx); err != nil {
-		return nil, err
+		for cursor.Next(ctx) {
+			var v model.ObjAsstDes
+			if err = cursor.Decode(&v); err != nil {
+				return nil, err
+			}
+			objAsstDes = append(objAsstDes, types.ObjAsstDes{
+				ObjAsstId: v.ObjAsstId,
+				SrcObjId:  v.SrcObjId,
+				DestObjId: v.DestObjId,
+				AsstId:    v.AsstId,
+			})
+		}
+
+		if err = cursor.Close(ctx); err != nil {
+			return nil, err
+		}
 	}
 
 	return objAsstDes, nil
 }
 
 func (c *cmdb) DeleteObjAsst(ctx context.Context, objAsstId string) (interface{}, error) {
-	return nil, nil
+	condition := bson.M{model.ObjAsstId: objAsstId}
+
+	if exists, _ := c.factory.Cmdb.CheckIdExistsWithFilter(ctx,
+		model.ObjAsstDes{}.TableName(),
+		condition); !exists {
+		return nil, errors.New("this obj asst id does not exists")
+	}
+
+	return c.factory.Cmdb.DeleteWithFilter(ctx, model.ObjAsstDes{}.TableName(), condition)
 }
 
 func (c *cmdb) CreateInstAsst(ctx context.Context, instAsst *types.InstAsstDes) (interface{}, error) {

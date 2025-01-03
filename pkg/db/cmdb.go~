@@ -44,7 +44,7 @@ func (c *cmdb) DeleteWithFilter(ctx context.Context, tableName string, condition
 	return result.DeletedCount, nil
 }
 
-func (c *cmdb) CheckIdExistsWithFilter(ctx context.Context, tableName string, condition map[string]string) (bool, error) {
+func (c *cmdb) CheckIdExistsWithFilter(ctx context.Context, tableName string, condition bson.M) (bool, error) {
 	if err := c.db.Collection(tableName).FindOne(ctx, condition).Err(); err != nil {
 		if errors.Is(err, mongo.ErrNoDocuments) {
 			return false, nil
@@ -91,7 +91,7 @@ func (c *cmdb) DeleteObjectAttrWithTransaction(ctx context.Context, objId, prope
 		}
 
 		if _, err = c.db.Collection(fmt.Sprintf("Asst_%s", objId)).
-			DeleteMany(ctx, bson.M{"$unset": bson.M{propertyId: ""}}); err != nil {
+			UpdateMany(ctx,bson.M{}, bson.M{"$unset": bson.M{propertyId: ""}}); err != nil {
 			return nil, err
 		}
 		return nil, nil

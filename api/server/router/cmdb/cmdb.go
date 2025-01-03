@@ -34,8 +34,8 @@ func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
 
 		cmRoute.POST("/create/objectAttr", cm.createObjectAttr)
 		cmRoute.GET("/list/objectAttr/:objId", cm.listObjectAttr)
-		cmRoute.PUT("/update/objectAtt/:objId/:objAttrId", cm.updateObjectAttr)
-		cmRoute.DELETE("/delete/objectAtt/:objId/:objAttrId", cm.deleteObjectAttr)
+		cmRoute.PUT("/update/objectAttr/:objId/:objAttrId", cm.updateObjectAttr)
+		cmRoute.DELETE("/delete/objectAttr/:objId/:objAttrId", cm.deleteObjectAttr)
 
 		cmRoute.POST("/create/object/instance/:objId", cm.createInstData)
 		cmRoute.GET("/list/object/instance/:objId", cm.listInstData)
@@ -44,11 +44,11 @@ func (cm *cmdbRouter) cmdbRoutes(httpEngine *gin.Engine) {
 
 		cmRoute.POST("/create/associationType", cm.createAssociationType)
 		cmRoute.GET("/list/associationType", cm.listAssociationType)
-		cmRoute.POST("/delete/associationType/:associationId", cm.deleteAssociationType)
+		cmRoute.DELETE("/delete/associationType/:associationId", cm.deleteAssociationType)
 
 		cmRoute.POST("/create/objAssociation", cm.createObjectAssociation)
 		cmRoute.GET("/list/objAssociation/:objId", cm.listObjectAssociation)
-		cmRoute.POST("/delete/objAssociation/:objAsstId", cm.deleteObjectAssociation)
+		cmRoute.DELETE("/delete/objAssociation/:objAsstId", cm.deleteObjectAssociation)
 
 		cmRoute.POST("/create/instAssociation", cm.createInstAssociation)
 		cmRoute.GET("/list/instAssociation/:objId", cm.listInstAssociation)

@@ -21,9 +21,10 @@ type ObjectAttr struct {
 }
 
 type AssociationType struct {
-	AsstId  string `json:"asst_id"`
-	SrcDes  string `json:"src_des"`
-	DestDes string `json:"dest_des"`
+	AsstId   string `json:"asst_id"`
+	AsstName string `json:"asst_name"`
+	SrcDes   string `json:"src_des"`
+	DestDes  string `json:"dest_des"`
 }
 
 type ObjAsstDes struct {
